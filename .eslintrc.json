@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "google",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "react"
+  ],
+  "rules": {
+    "linebreak-style": ["error", "windows"]
+  },
+  "env": {
+    "browser": true
+  }
+}

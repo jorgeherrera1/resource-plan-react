@@ -1,0 +1,49 @@
+{
+  "name": "rp-react",
+  "version": "1.0.0",
+  "description": "resource plan app built with react",
+  "private": true,
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "resource",
+    "plan"
+  ],
+  "author": "Jorge Herrera <jorge.herrera@4thsource.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browser-sync": "^2.13.0",
+    "browserify": "^13.0.1",
+    "del": "^2.2.1",
+    "eslint": "^3.0.1",
+    "eslint-config-google": "^0.6.0",
+    "eslint-plugin-react": "^5.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-eslint": "^3.0.1",
+    "gulp-htmlmin": "^2.0.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.4",
+    "install": "^0.8.1",
+    "npm": "^3.10.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "dependencies": {
+    "moment": "^2.14.1",
+    "moment-range": "^2.2.0",
+    "react": "^15.2.1",
+    "react-dom": "^15.2.1",
+    "scooter-css": "^2.0.0"
+  }
+}

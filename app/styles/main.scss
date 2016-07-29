@@ -1,0 +1,24 @@
+@import "../../node_modules/scooter-css/scss/scooter.scss";
+
+body {
+  box-sizing: border-box;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
+.rp-header, .rp-content {
+  display: block;
+  width: 100%;
+}
+
+.rp-resource-id-col {
+
+}
+
+.rp-resource-name-col {
+  min-width: 240px;
+}
+
+.rp-week-col {
+
+}
