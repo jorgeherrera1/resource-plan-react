@@ -7,12 +7,22 @@ var uglify = require('gulp-uglify');
 var eslint = require('gulp-eslint');
 var sass = require('gulp-sass');
 var cssnano = require('gulp-cssnano');
+var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var browserSync = require('browser-sync').create();
 var del = require('del');
+
+gulp.task('images', function() {
+  return gulp.src('app/images/**/*')
+    .pipe(imagemin({
+      progressive: true,
+      interlaced: true
+    }))
+    .pipe(gulp.dest('public/images'));
+});
 
 gulp.task('html', function() {
   return gulp.src('app/**/*.html')
@@ -73,7 +83,7 @@ gulp.task('js', function() {
     .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('serve', ['html', 'styles', 'js'], function() {
+gulp.task('serve', ['images', 'html', 'styles', 'js'], function() {
   browserSync.init({
     // Don't show any notifications in the browser
     notify: false,
