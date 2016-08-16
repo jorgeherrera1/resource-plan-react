@@ -41,7 +41,7 @@ class Header extends React.Component {
         <th key={weeks.length} className="rp-week-col u-font-center">
           {week.format('DD-MMM-YYYY')}
           <br/>
-          {week.format('DD-MMM-YYYY')}
+          {week.endOf('week').format('DD-MMM-YYYY')}
         </th>
       );
     });
