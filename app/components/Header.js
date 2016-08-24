@@ -11,8 +11,6 @@ class Header extends React.Component {
       startDate: props.startDate,
       numberOfWeeks: props.numberOfWeeks
     };
-
-    console.log(this.state);
   }
 
   render() {
@@ -36,12 +34,31 @@ class Header extends React.Component {
     let range = moment.range(start, end);
     let weeks = [];
 
-    range.by('weeks', function(week) {
+    range.by('weeks', function(weekStarting) {
+      let weekEnding = weekStarting.clone().endOf('week');
+      let weekHeaderCss = 'rp-week-col u-font-center';
+
+      let addRemoveWeekTooltip;
+      if (weekEnding.isSame(end)) {
+        weekHeaderCss += ' rp-week-last-col';
+        addRemoveWeekTooltip =
+        <div className="c-card c-card--arrow rp-add-remove-week-tooltip">
+          <button className="c-btn c-btn--primary c-btn--full">
+            Add Week
+          </button>
+          <button className="c-btn c-btn--tertiary c-btn--full">
+            Remove Week
+          </button>
+        </div>;
+      }
+
       weeks.push(
-        <th key={weeks.length} className="rp-week-col u-font-center">
-          {week.format('DD-MMM-YYYY')}
+        <th key={weeks.length} className={weekHeaderCss}>
+          {weekStarting.format('DD-MMM-YYYY')}
           <br/>
-          {week.endOf('week').format('DD-MMM-YYYY')}
+          {weekEnding.format('DD-MMM-YYYY')}
+          <br/>
+          {addRemoveWeekTooltip}
         </th>
       );
     });
