@@ -41,10 +41,10 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "moment": "^2.14.1",
+    "moment": "^2.15.1",
     "moment-range": "^2.2.0",
-    "react": "^15.2.1",
-    "react-dom": "^15.2.1",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
     "scooter-css": "^2.0.0"
   }
 }
