@@ -4,15 +4,6 @@ import 'moment-range';
 
 class Header extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      startDate: props.startDate,
-      numberOfWeeks: props.numberOfWeeks
-    };
-  }
-
   render() {
     let weeks = this._renderWeeks();
 
@@ -27,9 +18,9 @@ class Header extends React.Component {
   }
 
   _renderWeeks() {
-    let start = moment(this.state.startDate).startOf('week');
+    let start = moment(this.props.startDate).startOf('week');
     let end = start.clone()
-                   .add(this.state.numberOfWeeks - 1, 'weeks')
+                   .add(this.props.numberOfWeeks - 1, 'weeks')
                    .endOf('week');
     let range = moment.range(start, end);
     let weeks = [];
