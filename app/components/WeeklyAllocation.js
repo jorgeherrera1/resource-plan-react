@@ -4,10 +4,10 @@ class WeeklyAllocation extends React.Component {
   constructor(props) {
     super(props);
 
-    this.hoursChanged = this.hoursChanged.bind(this);
+    this.handleHoursChanged = this.handleHoursChanged.bind(this);
   }
 
-  hoursChanged(e) {
+  handleHoursChanged(e) {
     console.log('hours changed');
   }
 
@@ -16,7 +16,7 @@ class WeeklyAllocation extends React.Component {
       <td>
         <input type="text" className="c-input"
           value={this.props.hours}
-          onChange={this.hoursChanged} />
+          onChange={this.handleHoursChanged} />
       </td>
     );
   }

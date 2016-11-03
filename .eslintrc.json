@@ -7,7 +7,9 @@
     "react"
   ],
   "rules": {
-    "linebreak-style": ["error", "windows"]
+    "arrow-parens": ["error", "always"],
+    "linebreak-style": "off",
+    "require-jsdoc": "off"
   },
   "env": {
     "browser": true

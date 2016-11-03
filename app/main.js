@@ -1,11 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
 import ResourcePlans from './components/ResourcePlans';
+import ResourcePlanStore from './stores/ResourcePlanStore';
 
-let data = [
-  {id: 1, name: 'Jorge', allocations: [20, 40, 40, 40]},
-  {id: 2, name: 'Emmanuel', allocations: [10, 10, 10, 10]}
-];
+let data = ResourcePlanStore.getAll();
 
 render(
   <ResourcePlans data={data} startDate={new Date()}/>,

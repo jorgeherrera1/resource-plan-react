@@ -1,15 +1,23 @@
 import React from 'react';
 import WeeklyAllocation from './WeeklyAllocation';
+import ResourcePlanActions from '../actions/ResourcePlanActions';
 
 class ResourcePlan extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      name: props.name
+    };
     this.nameChanged = this.nameChanged.bind(this);
   }
 
   nameChanged(e) {
-    console.log('name changed: ' + e.target.value);
+    let newName = e.target.value.trim();
+    ResourcePlanActions.updateResourceName(1, newName);
+    this.setState({
+      name: newName
+    });
   }
 
   render() {
@@ -24,7 +32,7 @@ class ResourcePlan extends React.Component {
         <td>{this.props.id}</td>
         <td>
           <input type="text" className="c-input"
-            value={this.props.name}
+            value={this.state.name}
             onChange={this.nameChanged}/>
         </td>
         {allocationElements}
