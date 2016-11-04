@@ -1,1 +1,2 @@
 export const UPDATE_RESOURCE_NAME = 'UPDATE_RESOURCE_NAME';
+export const ADD_WEEK = 'ADD_WEEK';

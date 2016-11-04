@@ -9,6 +9,12 @@ var ResourcePlanActions = {
       id: id,
       name: name
     });
+  },
+
+  addWeek: function() {
+    AppDispatcher.dispatch({
+      actionType: ResourcePlanConstants.ADD_WEEK
+    });
   }
 
 };

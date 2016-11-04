@@ -14,6 +14,12 @@ function updateResourceName(id, name) {
   _resourcePlans[id].name = name;
 }
 
+function addWeek() {
+  for (let i = 0; i < _resourcePlans.length; i++) {
+    _resourcePlans[i].allocations.push(0);
+  }
+}
+
 var ResourcePlanStore = Object.assign({}, EventEmitter.prototype, {
 
   getAll: function() {
@@ -36,11 +42,19 @@ var ResourcePlanStore = Object.assign({}, EventEmitter.prototype, {
 
 AppDispatcher.register((action) => {
   switch (action.actionType) {
+
     case ResourcePlanConstants.UPDATE_RESOURCE_NAME:
       updateResourceName(action.id, action.name);
       ResourcePlanStore.emitChange();
 
       break;
+
+    case ResourcePlanConstants.ADD_WEEK:
+      addWeek();
+      ResourcePlanStore.emitChange();
+
+      break;
+
     default:
 
   }
