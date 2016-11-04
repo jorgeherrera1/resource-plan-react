@@ -1,17 +1,34 @@
 import React from 'react';
 import Header from './Header';
 import ResourcePlan from './ResourcePlan';
+import ResourcePlanStore from '../stores/ResourcePlanStore';
 
 class ResourcePlans extends React.Component {
 
   constructor(props) {
     super(props);
 
+    let data = ResourcePlanStore.getAll();
+
     this.state = {
-      data: props.data,
+      data: data,
       startDate: props.startDate,
-      numberOfWeeks: props.data[0].allocations.length
+      numberOfWeeks: data[0].allocations.length
     };
+
+    this._onResourcePlanChange = this._onResourcePlanChange.bind(this);
+  }
+
+  componentDidMount() {
+    ResourcePlanStore.addChangeListener(this._onResourcePlanChange);
+  }
+
+  componentWillUnmount() {
+    ResourcePlanStore.removeChangeListener(this._onResourcePlanChange);
+  }
+
+  _onResourcePlanChange() {
+    this.setState(ResourcePlanStore.getAll());
   }
 
   render() {
@@ -41,7 +58,6 @@ class ResourcePlans extends React.Component {
 }
 
 ResourcePlans.propTypes = {
-  data: React.PropTypes.array.isRequired,
   startDate: React.PropTypes.instanceOf(Date)
 };
 
