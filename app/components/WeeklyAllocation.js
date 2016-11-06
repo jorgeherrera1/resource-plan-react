@@ -4,11 +4,16 @@ class WeeklyAllocation extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      weekId: props.weekId
+    };
+
     this.handleHoursChanged = this.handleHoursChanged.bind(this);
   }
 
   handleHoursChanged(e) {
-    console.log('hours changed');
+    let hours = e.target.value.trim();
+    this.props.onWeeklyAllocationChange(this.state.weekId, hours);
   }
 
   render() {
@@ -23,7 +28,9 @@ class WeeklyAllocation extends React.Component {
 }
 
 WeeklyAllocation.propTypes = {
-  hours: React.PropTypes.number.isRequired
+  weekId: React.PropTypes.number.isRequired,
+  hours: React.PropTypes.number.isRequired,
+  onWeeklyAllocationChange: React.PropTypes.func
 };
 
 export default WeeklyAllocation;

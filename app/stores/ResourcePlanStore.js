@@ -49,8 +49,8 @@ AppDispatcher.register((action) => {
 
       break;
 
-    case ResourcePlanConstants.ADD_WEEK:
-      addWeek();
+    case ResourcePlanConstants.UPDATE_WEEKLY_ALLOCATION:
+      console.log(action.hours);
       ResourcePlanStore.emitChange();
 
       break;

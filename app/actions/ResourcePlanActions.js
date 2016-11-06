@@ -11,6 +11,15 @@ var ResourcePlanActions = {
     });
   },
 
+  updateWeeklyAllocation: function(resourcePlanId, weekId, hours) {
+    AppDispatcher.dispatch({
+      actionType: ResourcePlanConstants.UPDATE_WEEKLY_ALLOCATION,
+      resourcePlanId: resourcePlanId,
+      weekId: weekId,
+      hours: hours
+    });
+  },
+
   addWeek: function() {
     AppDispatcher.dispatch({
       actionType: ResourcePlanConstants.ADD_WEEK

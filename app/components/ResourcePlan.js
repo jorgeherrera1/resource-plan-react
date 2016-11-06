@@ -7,12 +7,15 @@ class ResourcePlan extends React.Component {
     super(props);
 
     this.state = {
+      id: props.id,
       name: props.name
     };
-    this.nameChanged = this.nameChanged.bind(this);
+
+    this.handleNameChanged = this.handleNameChanged.bind(this);
+    this.handleWeeklyAllocationChanged = this.handleWeeklyAllocationChanged.bind(this);
   }
 
-  nameChanged(e) {
+  handleNameChanged(e) {
     let newName = e.target.value.trim();
     ResourcePlanActions.updateResourceName(1, newName);
     this.setState({
@@ -20,20 +23,31 @@ class ResourcePlan extends React.Component {
     });
   }
 
+  handleWeeklyAllocationChanged(weekId, hours) {
+    ResourcePlanActions.updateWeeklyAllocation(this.state.id, weekId, hours);
+  }
+
   render() {
+    let that = this;
+
     let allocationElements = this.props.allocations.map(function(hours, idx) {
       return (
-        <WeeklyAllocation hours={hours} key={idx}/>
+        <WeeklyAllocation
+          key={idx}
+          weekId={idx}
+          hours={hours}
+          onWeeklyAllocationChange={that.handleWeeklyAllocationChanged}
+        />
       );
     });
 
     return (
       <tr>
-        <td>{this.props.id}</td>
+        <td>{this.state.id}</td>
         <td>
           <input type="text" className="c-input"
             value={this.state.name}
-            onChange={this.nameChanged}/>
+            onChange={this.handleNameChanged}/>
         </td>
         {allocationElements}
         <td>320</td>
