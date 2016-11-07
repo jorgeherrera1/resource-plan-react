@@ -16,7 +16,7 @@ class ResourcePlan extends React.Component {
   }
 
   handleNameChanged(e) {
-    let newName = e.target.value.trim();
+    let newName = e.target.value;
     ResourcePlanActions.updateResourceName(this.state.id, newName);
     this.setState({
       name: newName
@@ -30,7 +30,7 @@ class ResourcePlan extends React.Component {
   render() {
     let that = this;
 
-    let allocationElements = this.props.allocations.map(function(hours, idx) {
+    let allocationElements = this.props.allocations.map((hours, idx) => {
       return (
         <WeeklyAllocation
           key={idx}
@@ -39,6 +39,10 @@ class ResourcePlan extends React.Component {
           onWeeklyAllocationChange={that.handleWeeklyAllocationChanged}
         />
       );
+    });
+
+    let totalHours = this.props.allocations.reduce((previousHours, currentHours) => {
+      return previousHours + currentHours;
     });
 
     return (
@@ -50,7 +54,7 @@ class ResourcePlan extends React.Component {
             onChange={this.handleNameChanged}/>
         </td>
         {allocationElements}
-        <td>320</td>
+        <td>{totalHours}</td>
       </tr>
     );
   }

@@ -13,7 +13,12 @@ class WeeklyAllocation extends React.Component {
   }
 
   handleHoursChanged(e) {
-    let hours = e.target.value.trim();
+    let hours = Number(e.target.value);
+
+    if (isNaN(hours)) {
+      return;
+    }
+
     this.props.onWeeklyAllocationChange(this.state.weekId, hours);
     this.setState({
       hours: hours
