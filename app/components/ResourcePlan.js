@@ -17,7 +17,7 @@ class ResourcePlan extends React.Component {
 
   handleNameChanged(e) {
     let newName = e.target.value.trim();
-    ResourcePlanActions.updateResourceName(1, newName);
+    ResourcePlanActions.updateResourceName(this.state.id, newName);
     this.setState({
       name: newName
     });

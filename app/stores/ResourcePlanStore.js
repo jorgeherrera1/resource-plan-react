@@ -5,13 +5,17 @@ import EventEmitter from 'events';
 const CHANGE_EVENT = 'change';
 
 var _resourcePlans = [
-  {id: 1, name: 'Jorge', allocations: [20, 40, 40, 40]},
-  {id: 2, name: 'Emmanuel', allocations: [10, 10, 10, 10]},
-  {id: 3, name: 'Adolfo', allocations: [10, 20, 10, 20]}
+  {id: 0, name: 'Jorge', allocations: [20, 40, 40, 40]},
+  {id: 1, name: 'Emmanuel', allocations: [10, 10, 10, 10]},
+  {id: 2, name: 'Adolfo', allocations: [10, 20, 10, 20]}
 ];
 
 function updateResourceName(id, name) {
   _resourcePlans[id].name = name;
+}
+
+function updateWeeklyAllocation(id, weekId, hours) {
+  _resourcePlans[id].allocations[weekId] = Number(hours);
 }
 
 function addWeek() {
@@ -44,13 +48,13 @@ AppDispatcher.register((action) => {
   switch (action.actionType) {
 
     case ResourcePlanConstants.UPDATE_RESOURCE_NAME:
-      updateResourceName(action.id, action.name);
+      updateResourceName(action.resourcePlanId, action.name);
       ResourcePlanStore.emitChange();
 
       break;
 
     case ResourcePlanConstants.UPDATE_WEEKLY_ALLOCATION:
-      console.log(action.hours);
+      updateWeeklyAllocation(action.resourcePlanId, action.weekId, action.hours);
       ResourcePlanStore.emitChange();
 
       break;

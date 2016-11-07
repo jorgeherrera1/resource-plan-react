@@ -5,7 +5,8 @@ class WeeklyAllocation extends React.Component {
     super(props);
 
     this.state = {
-      weekId: props.weekId
+      weekId: props.weekId,
+      hours: props.hours
     };
 
     this.handleHoursChanged = this.handleHoursChanged.bind(this);
@@ -14,13 +15,16 @@ class WeeklyAllocation extends React.Component {
   handleHoursChanged(e) {
     let hours = e.target.value.trim();
     this.props.onWeeklyAllocationChange(this.state.weekId, hours);
+    this.setState({
+      hours: hours
+    });
   }
 
   render() {
     return (
       <td>
         <input type="text" className="c-input"
-          value={this.props.hours}
+          value={this.state.hours}
           onChange={this.handleHoursChanged} />
       </td>
     );

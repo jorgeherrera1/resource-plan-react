@@ -3,10 +3,10 @@ import * as ResourcePlanConstants from '../constants/ResourcePlanConstants';
 
 var ResourcePlanActions = {
 
-  updateResourceName: function(id, name) {
+  updateResourceName: function(resourcePlanId, name) {
     AppDispatcher.dispatch({
       actionType: ResourcePlanConstants.UPDATE_RESOURCE_NAME,
-      id: id,
+      resourcePlanId: resourcePlanId,
       name: name
     });
   },
