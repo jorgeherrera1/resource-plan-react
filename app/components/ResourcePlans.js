@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import ResourcePlan from './ResourcePlan';
 import ResourcePlanStore from '../stores/ResourcePlanStore';
 import ResourcePlanActions from '../actions/ResourcePlanActions';
@@ -59,6 +60,9 @@ class ResourcePlans extends React.Component {
               numberOfWeeks={numberOfWeeks}
               startDate={this.state.startDate} />
           </thead>
+          <tfoot>
+            <Footer numberOfWeeks={numberOfWeeks} data={this.state.data} />
+          </tfoot>
           <tbody>
             {resourcePlanElements}
           </tbody>
