@@ -59,6 +59,12 @@ AppDispatcher.register((action) => {
 
       break;
 
+    case ResourcePlanConstants.ADD_WEEK:
+      addWeek();
+      ResourcePlanStore.emitChange();
+
+      break;
+
     default:
 
   }

@@ -103,3 +103,5 @@ gulp.task('serve', ['images', 'html', 'styles', 'js'], function() {
 gulp.task('clean', function() {
   del(['public']);
 });
+
+gulp.task('default', ['serve']);

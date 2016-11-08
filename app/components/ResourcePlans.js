@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import ResourcePlan from './ResourcePlan';
 import ResourcePlanStore from '../stores/ResourcePlanStore';
+import ResourcePlanActions from '../actions/ResourcePlanActions';
 
 class ResourcePlans extends React.Component {
 
@@ -12,11 +13,16 @@ class ResourcePlans extends React.Component {
 
     this.state = {
       data: data,
-      startDate: props.startDate,
-      numberOfWeeks: data[0].allocations.length
+      startDate: props.startDate
     };
 
+    this.handleAddWeek = this.handleAddWeek.bind(this);
     this._onResourcePlanChange = this._onResourcePlanChange.bind(this);
+  }
+
+  handleAddWeek(e) {
+    ResourcePlanActions.addWeek();
+    this._onResourcePlanChange();
   }
 
   componentDidMount() {
@@ -32,6 +38,8 @@ class ResourcePlans extends React.Component {
   }
 
   render() {
+    const numberOfWeeks = this.state.data[0].allocations.length;
+
     let resourcePlanElements = this.state.data.map(function(rp, idx) {
       return (
         <ResourcePlan
@@ -43,16 +51,19 @@ class ResourcePlans extends React.Component {
     });
 
     return (
-      <table className="c-table">
-        <thead>
-          <Header
-            numberOfWeeks={this.state.numberOfWeeks}
-            startDate={this.state.startDate} />
-        </thead>
-        <tbody>
-          {resourcePlanElements}
-        </tbody>
-      </table>
+      <div>
+        <button onClick={this.handleAddWeek} className="c-btn c-btn--primary">Add Week</button>
+        <table className="c-table">
+          <thead>
+            <Header
+              numberOfWeeks={numberOfWeeks}
+              startDate={this.state.startDate} />
+          </thead>
+          <tbody>
+            {resourcePlanElements}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
