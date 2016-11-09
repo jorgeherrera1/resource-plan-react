@@ -26,6 +26,11 @@ class ResourcePlans extends React.Component {
     this._onResourcePlanChange();
   }
 
+  handleAddResource(e) {
+    ResourcePlanActions.addResource();
+    this._onResourcePlanChange();
+  }
+
   componentDidMount() {
     ResourcePlanStore.addChangeListener(this._onResourcePlanChange);
   }
@@ -53,7 +58,11 @@ class ResourcePlans extends React.Component {
 
     return (
       <div>
-        <button onClick={this.handleAddWeek} className="c-btn c-btn--primary">Add Week</button>
+        <button
+          onClick={this.handleAddWeek} className="c-btn c-btn--primary">Add Week</button>
+        &nbsp;&nbsp;&nbsp;
+        <button
+          onClick={this.handleAddResource} className="c-btn c-btn--primary">Add Resource</button>
         <table className="c-table">
           <thead>
             <WeeklyHeader

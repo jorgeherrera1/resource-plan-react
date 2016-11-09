@@ -24,6 +24,14 @@ function addWeek() {
   }
 }
 
+function addResource() {
+  _resourcePlans.push({
+    id: _resourcePlans.length,
+    name: 'Resource',
+    allocations: new Array(_resourcePlans[0].allocations.length).fill(0)
+  });
+}
+
 var ResourcePlanStore = Object.assign({}, EventEmitter.prototype, {
 
   getAll: function() {
@@ -61,6 +69,12 @@ AppDispatcher.register((action) => {
 
     case ResourcePlanConstants.ADD_WEEK:
       addWeek();
+      ResourcePlanStore.emitChange();
+
+      break;
+
+    case ResourcePlanConstants.ADD_RESOURCE:
+      addResource();
       ResourcePlanStore.emitChange();
 
       break;

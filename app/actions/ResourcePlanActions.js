@@ -24,6 +24,12 @@ var ResourcePlanActions = {
     AppDispatcher.dispatch({
       actionType: ResourcePlanConstants.ADD_WEEK
     });
+  },
+
+  addResource: function() {
+    AppDispatcher.dispatch({
+      actionType: ResourcePlanConstants.ADD_RESOURCE
+    });
   }
 
 };
