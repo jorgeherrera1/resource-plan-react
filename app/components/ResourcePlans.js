@@ -1,6 +1,6 @@
 import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
+import WeeklyHeader from './WeeklyHeader';
+import TotalsFooter from './TotalsFooter';
 import ResourcePlan from './ResourcePlan';
 import ResourcePlanStore from '../stores/ResourcePlanStore';
 import ResourcePlanActions from '../actions/ResourcePlanActions';
@@ -56,12 +56,12 @@ class ResourcePlans extends React.Component {
         <button onClick={this.handleAddWeek} className="c-btn c-btn--primary">Add Week</button>
         <table className="c-table">
           <thead>
-            <Header
+            <WeeklyHeader
               numberOfWeeks={numberOfWeeks}
               startDate={this.state.startDate} />
           </thead>
           <tfoot>
-            <Footer numberOfWeeks={numberOfWeeks} data={this.state.data} />
+            <TotalsFooter numberOfWeeks={numberOfWeeks} data={this.state.data} />
           </tfoot>
           <tbody>
             {resourcePlanElements}

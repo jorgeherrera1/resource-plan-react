@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Footer extends React.Component {
+class TotalsFooter extends React.Component {
 
   render() {
     let weekTotals = this._renderWeekTotals();
@@ -33,9 +33,9 @@ class Footer extends React.Component {
   }
 }
 
-Footer.propTypes = {
+TotalsFooter.propTypes = {
   numberOfWeeks: React.PropTypes.number.isRequired,
   data: React.PropTypes.array.isRequired
 };
 
-export default Footer;
+export default TotalsFooter;
