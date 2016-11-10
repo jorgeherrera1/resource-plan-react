@@ -12,7 +12,7 @@ class WeeklyHeader extends React.Component {
         <th className="rp-resource-id-col">#</th>
         <th className="rp-resource-name-col">Resource</th>
         {weeks}
-        <th className="u-font-center">Total</th>
+        <th className="u-font-center rp-resource-totals-col">Total</th>
       </tr>
     );
   }

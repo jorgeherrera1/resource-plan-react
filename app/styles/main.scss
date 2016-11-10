@@ -11,16 +11,28 @@ body {
   width: 100%;
 }
 
-.rp-resource-id-col {
+.rp-resource-plans {
+  overflow-x: scroll;
+}
 
+.rp-resource-plan-table {
+  table-layout: fixed;
+}
+
+.rp-resource-id-col {
+  width: 40px;
 }
 
 .rp-resource-name-col {
-  min-width: 240px;
+  width: 220px;
+}
+
+.rp-resource-totals-col {
+  width: 100px;
 }
 
 .rp-week-col {
-
+  width: 100px;
 }
 
 .rp-add-remove-week-tooltip {

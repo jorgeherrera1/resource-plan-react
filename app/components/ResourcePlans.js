@@ -57,13 +57,13 @@ class ResourcePlans extends React.Component {
     });
 
     return (
-      <div>
+      <div className="rp-resource-plans">
         <button
           onClick={this.handleAddWeek} className="c-btn c-btn--primary">Add Week</button>
         &nbsp;&nbsp;&nbsp;
         <button
           onClick={this.handleAddResource} className="c-btn c-btn--primary">Add Resource</button>
-        <table className="c-table">
+        <table className="c-table rp-resource-plan-table">
           <thead>
             <WeeklyHeader
               numberOfWeeks={numberOfWeeks}
