@@ -7,8 +7,7 @@ class TotalsFooter extends React.Component {
 
     return (
       <tr>
-        <td></td>
-        <td></td>
+        <td colSpan="2"></td>
         {weekTotals}
       </tr>
     );
