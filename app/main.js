@@ -1,6 +1,6 @@
 import React from 'react';
 import {render} from 'react-dom';
-import ResourcePlans from './components/ResourcePlans';
+import ResourcePlans from './components/resource-plans-table/ResourcePlans';
 import Chart from 'chart.js';
 
 render(
@@ -40,7 +40,7 @@ var myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    beginAtZero:true
+                    beginAtZero: true
                 }
             }]
         }
