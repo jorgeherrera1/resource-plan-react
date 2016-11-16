@@ -1,7 +1,13 @@
 import React from 'react';
 import {render} from 'react-dom';
+import TabNav from './components/tab-bar/TabNav';
 import ResourcePlans from './components/resource-plans-table/ResourcePlans';
 import Chart from 'chart.js';
+
+render(
+  <TabNav />,
+  document.getElementsByClassName('rp-tab-nav-container')[0]
+);
 
 render(
   <ResourcePlans startDate={new Date()}/>,
