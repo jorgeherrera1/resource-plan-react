@@ -7,9 +7,18 @@ class TabNavItem extends React.Component {
 
     this.state = {
       title: props.title,
-      isActive: props.isActive || false,
-      tabIndex: -1
+      isActive: props.isActive || false
     };
+
+    this.handleTabNavItemClicked = this.handleTabNavItemClicked.bind(this);
+  }
+
+  handleTabNavItemClicked() {
+    this.setState({
+      isActive: true
+    });
+
+    this.props.onTabNavItemClicked(this.state.title);
   }
 
   getStyles() {
@@ -25,7 +34,10 @@ class TabNavItem extends React.Component {
   render() {
     return (
       <li role="presentation" className={this.getStyles()}>
-        <button role="tab" aria-selected={this.state.isActive}>{this.state.title}</button>
+        <button
+          onClick={this.handleTabNavItemClicked}
+          role="tab"
+          aria-selected={this.state.isActive}>{this.state.title}</button>
       </li>
     );
   }

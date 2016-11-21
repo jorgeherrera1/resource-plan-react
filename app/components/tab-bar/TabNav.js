@@ -3,13 +3,15 @@ import TabNavItem from './TabNavItem';
 
 class TabNav extends React.Component {
 
+  handleTabNavItemClicked(tabNavItem) {
+    console.log(`clicked ${tabNavItem}`);
+  }
+
   render() {
     return (
       <nav>
         <ul className="c-tab-nav" role="tablist">
-          <TabNavItem title="Resource Plan" isActive={true} />
-          <TabNavItem title="Monthly" />
-          <TabNavItem title="Burndown" />
+          {this.props.children}
         </ul>
       </nav>
     );
