@@ -4,7 +4,7 @@ class TabList extends React.Component {
 
   render() {
     return (
-      <nav>
+      <nav className="rp-tabs">
         <ul className="c-tab-nav" role="tablist">
           {this.props.children}
         </ul>

@@ -4,7 +4,7 @@ class TabContent extends React.Component {
 
   render() {
     return (
-      <div role="tabpanel">
+      <div className="rp-content" role="tabpanel">
         {this.props.children}
       </div>
     );

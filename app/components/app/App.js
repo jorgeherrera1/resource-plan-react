@@ -16,8 +16,11 @@ class App extends React.Component {
           <Tab>Burndown</Tab>
         </TabList>
         <TabContent>
-            <ResourcePlans startDate={new Date()} />
-          </TabContent>
+          <ResourcePlans startDate={new Date()} />
+        </TabContent>
+        <TabContent>
+          hola
+        </TabContent>
       </TabBar>
     );
   }
