@@ -5,30 +5,25 @@ class Tab extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      isActive: props.isActive || false
-    };
-
-    this.handleTabNavItemClicked = this.handleTabNavItemClicked.bind(this);
+    this.handleTabClicked = this.handleTabClicked.bind(this);
   }
 
-  handleTabNavItemClicked() {
-    this.setState({
-      isActive: true
-    });
+  handleTabClicked() {
+    this.props.onTabClicked(this.props.panelId);
   }
 
   render() {
     let styles = 'c-tab-nav__tab';
-    styles += this.state.isActive ? ' is-active' : '';
+    styles += this.props.active ? ' is-active' : '';
 
     return (
       <li role="presentation" className={styles}>
         <button
-          onClick={this.handleTabNavItemClicked}
+          onClick={this.handleTabClicked}
           role="tab"
-          aria-selected={this.state.isActive}
-          aria-expanded={this.state.isActive}>{this.props.children}</button>
+          aria-controls={this.props.panelId}
+          aria-selected={this.props.active}
+          aria-expanded={this.props.active}>{this.props.children}</button>
       </li>
     );
   }
@@ -36,8 +31,10 @@ class Tab extends React.Component {
 }
 
 Tab.propTypes = {
-  children: React.PropTypes.string.isRequired,
-  isActive: React.PropTypes.bool
+  children: React.PropTypes.string,
+  active: React.PropTypes.bool,
+  panelId: React.PropTypes.string,
+  onTabClicked: React.PropTypes.func
 };
 
 export default Tab;

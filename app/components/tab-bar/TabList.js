@@ -14,6 +14,7 @@ class TabList extends React.Component {
 
 }
 
+TabList.displayName = 'TabList';
 TabList.propTypes = {
   children: React.PropTypes.arrayOf(React.PropTypes.element).isRequired
 };

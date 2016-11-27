@@ -2,7 +2,7 @@ import React from 'react';
 import TabBar from '../tab-bar/TabBar';
 import TabList from '../tab-bar/TabList';
 import Tab from '../tab-bar/Tab';
-import TabContent from '../tab-bar/TabContent';
+import TabPanel from '../tab-bar/TabPanel';
 import ResourcePlans from '../resource-plans-table/ResourcePlans';
 
 class App extends React.Component {
@@ -15,12 +15,15 @@ class App extends React.Component {
           <Tab>Monthly</Tab>
           <Tab>Burndown</Tab>
         </TabList>
-        <TabContent>
+        <TabPanel>
           <ResourcePlans startDate={new Date()} />
-        </TabContent>
-        <TabContent>
-          hola
-        </TabContent>
+        </TabPanel>
+        <TabPanel>
+          Monthly
+        </TabPanel>
+        <TabPanel>
+          Burndown
+        </TabPanel>
       </TabBar>
     );
   }
