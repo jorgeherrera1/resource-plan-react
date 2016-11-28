@@ -60,7 +60,7 @@ class WeeklyHeader extends React.Component {
 
 WeeklyHeader.propTypes = {
   startDate: React.PropTypes.instanceOf(Date),
-  numberOfWeeks: React.PropTypes.number.isRequired
+  numberOfWeeks: React.PropTypes.number
 };
 
 export default WeeklyHeader;

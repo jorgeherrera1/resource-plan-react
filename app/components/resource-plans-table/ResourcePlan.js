@@ -6,25 +6,17 @@ class ResourcePlan extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      id: props.id,
-      name: props.name
-    };
-
     this.handleNameChanged = this.handleNameChanged.bind(this);
     this.handleWeeklyAllocationChanged = this.handleWeeklyAllocationChanged.bind(this);
   }
 
   handleNameChanged(e) {
     let newName = e.target.value;
-    ResourcePlanActions.updateResourceName(this.state.id, newName);
-    this.setState({
-      name: newName
-    });
+    ResourcePlanActions.updateResourceName(this.props.id, newName);
   }
 
   handleWeeklyAllocationChanged(weekId, hours) {
-    ResourcePlanActions.updateWeeklyAllocation(this.state.id, weekId, hours);
+    ResourcePlanActions.updateWeeklyAllocation(this.props.id, weekId, hours);
   }
 
   render() {
@@ -47,10 +39,10 @@ class ResourcePlan extends React.Component {
 
     return (
       <tr>
-        <td>{this.state.id + 1}</td>
+        <td>{this.props.id + 1}</td>
         <td>
           <input type="text" className="c-input"
-            value={this.state.name}
+            value={this.props.name}
             onChange={this.handleNameChanged}/>
         </td>
         {allocationElements}
@@ -61,9 +53,9 @@ class ResourcePlan extends React.Component {
 }
 
 ResourcePlan.propTypes = {
-  id: React.PropTypes.number.isRequired,
-  name: React.PropTypes.string.isRequired,
-  allocations: React.PropTypes.array.isRequired
+  id: React.PropTypes.number,
+  name: React.PropTypes.string,
+  allocations: React.PropTypes.array
 };
 
 export default ResourcePlan;

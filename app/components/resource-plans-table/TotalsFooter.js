@@ -33,8 +33,8 @@ class TotalsFooter extends React.Component {
 }
 
 TotalsFooter.propTypes = {
-  numberOfWeeks: React.PropTypes.number.isRequired,
-  data: React.PropTypes.array.isRequired
+  numberOfWeeks: React.PropTypes.number,
+  data: React.PropTypes.array
 };
 
 export default TotalsFooter;

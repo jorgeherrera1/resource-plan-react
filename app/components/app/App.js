@@ -51,11 +51,6 @@ class App extends React.Component {
       </TabBar>
     );
   }
-
 }
-
-App.propTypes = {
-
-};
 
 export default App;
