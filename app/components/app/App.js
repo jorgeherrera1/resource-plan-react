@@ -43,7 +43,9 @@ class App extends React.Component {
             resourcePlans={this.state.resourcePlans} />
         </TabPanel>
         <TabPanel>
-          <AllocationByMonth height={400} width={600} />
+          <AllocationByMonth height={400} width={600}
+            startDate={this.state.startDate}
+            resourcePlans={this.state.resourcePlans} />
         </TabPanel>
         <TabPanel>
           Burndown
