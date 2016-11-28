@@ -4,6 +4,7 @@ import TabList from '../tab-bar/TabList';
 import Tab from '../tab-bar/Tab';
 import TabPanel from '../tab-bar/TabPanel';
 import ResourcePlans from '../resource-plans-table/ResourcePlans';
+import AllocationByMonth from '../charts/AllocationByMonth';
 
 class App extends React.Component {
 
@@ -19,7 +20,7 @@ class App extends React.Component {
           <ResourcePlans startDate={new Date()} />
         </TabPanel>
         <TabPanel>
-          Monthly
+          <AllocationByMonth height={400} width={600} />
         </TabPanel>
         <TabPanel>
           Burndown
