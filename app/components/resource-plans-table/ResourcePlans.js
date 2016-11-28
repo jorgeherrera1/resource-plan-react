@@ -2,7 +2,6 @@ import React from 'react';
 import WeeklyHeader from './WeeklyHeader';
 import TotalsFooter from './TotalsFooter';
 import ResourcePlan from './ResourcePlan';
-import ResourcePlanStore from '../../stores/ResourcePlanStore';
 import ResourcePlanActions from '../../actions/ResourcePlanActions';
 
 class ResourcePlans extends React.Component {
@@ -10,43 +9,21 @@ class ResourcePlans extends React.Component {
   constructor(props) {
     super(props);
 
-    let data = ResourcePlanStore.getAll();
-
-    this.state = {
-      data: data.resourcePlans,
-      startDate: data.startDate
-    };
-
     this.handleAddWeek = this.handleAddWeek.bind(this);
-    this._onResourcePlanChange = this._onResourcePlanChange.bind(this);
   }
 
   handleAddWeek(e) {
     ResourcePlanActions.addWeek();
-    this._onResourcePlanChange();
   }
 
   handleAddResource(e) {
     ResourcePlanActions.addResource();
-    this._onResourcePlanChange();
-  }
-
-  componentDidMount() {
-    ResourcePlanStore.addChangeListener(this._onResourcePlanChange);
-  }
-
-  componentWillUnmount() {
-    ResourcePlanStore.removeChangeListener(this._onResourcePlanChange);
-  }
-
-  _onResourcePlanChange() {
-    this.setState(ResourcePlanStore.getAll());
   }
 
   render() {
-    const numberOfWeeks = this.state.data[0].allocations.length;
+    const numberOfWeeks = this.props.resourcePlans[0].allocations.length;
 
-    let resourcePlanElements = this.state.data.map(function(rp, idx) {
+    let resourcePlanElements = this.props.resourcePlans.map(function(rp, idx) {
       return (
         <ResourcePlan
           id={idx}
@@ -67,10 +44,10 @@ class ResourcePlans extends React.Component {
           <thead>
             <WeeklyHeader
               numberOfWeeks={numberOfWeeks}
-              startDate={this.state.startDate} />
+              startDate={this.props.startDate} />
           </thead>
           <tfoot>
-            <TotalsFooter numberOfWeeks={numberOfWeeks} data={this.state.data} />
+            <TotalsFooter numberOfWeeks={numberOfWeeks} data={this.props.resourcePlans} />
           </tfoot>
           <tbody>
             {resourcePlanElements}
@@ -80,5 +57,10 @@ class ResourcePlans extends React.Component {
     );
   }
 }
+
+ResourcePlans.propTypes = {
+  startDate: React.PropTypes.instanceOf(Date),
+  resourcePlans: React.PropTypes.array
+};
 
 export default ResourcePlans;
