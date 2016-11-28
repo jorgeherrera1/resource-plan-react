@@ -17,7 +17,7 @@ class App extends React.Component {
           <Tab>Burndown</Tab>
         </TabList>
         <TabPanel>
-          <ResourcePlans startDate={new Date()} />
+          <ResourcePlans />
         </TabPanel>
         <TabPanel>
           <AllocationByMonth height={400} width={600} />

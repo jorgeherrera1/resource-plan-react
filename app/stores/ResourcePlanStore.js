@@ -4,38 +4,42 @@ import EventEmitter from 'events';
 
 const CHANGE_EVENT = 'change';
 
-var _resourcePlans = [
-  {id: 0, name: 'Jorge', allocations: [20, 40, 40, 40]},
-  {id: 1, name: 'Emmanuel', allocations: [10, 10, 10, 10]},
-  {id: 2, name: 'Adolfo', allocations: [10, 20, 10, 20]}
-];
+let data = {
+  project: 'My Project',
+  startDate: new Date(),
+  resourcePlans: [
+    {name: 'Dev Lead', allocations: [20, 20, 20, 20]},
+    {name: 'Sr Developer', allocations: [40, 40, 40, 40]},
+    {name: 'Jr Developer', allocations: [40, 40, 20, 10]},
+    {name: 'Jr Developer', allocations: [40, 40, 20, 10]}
+  ]
+};
 
 function updateResourceName(id, name) {
-  _resourcePlans[id].name = name;
+  data.resourcePlans[id].name = name;
 }
 
 function updateWeeklyAllocation(id, weekId, hours) {
-  _resourcePlans[id].allocations[weekId] = Number(hours);
+  data.resourcePlans[id].allocations[weekId] = Number(hours);
 }
 
 function addWeek() {
-  for (let i = 0; i < _resourcePlans.length; i++) {
-    _resourcePlans[i].allocations.push(0);
+  for (let i = 0; i < data.resourcePlans.length; i++) {
+    data.resourcePlans[i].allocations.push(0);
   }
 }
 
 function addResource() {
-  _resourcePlans.push({
-    id: _resourcePlans.length,
-    name: 'Resource',
-    allocations: new Array(_resourcePlans[0].allocations.length).fill(0)
+  data.resourcePlans.push({
+    name: 'Developer',
+    allocations: new Array(data.resourcePlans[0].allocations.length).fill(0)
   });
 }
 
 var ResourcePlanStore = Object.assign({}, EventEmitter.prototype, {
 
   getAll: function() {
-    return _resourcePlans;
+    return data;
   },
 
   emitChange: function() {

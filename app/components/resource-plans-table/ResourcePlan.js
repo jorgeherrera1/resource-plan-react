@@ -47,7 +47,7 @@ class ResourcePlan extends React.Component {
 
     return (
       <tr>
-        <td>{this.state.id}</td>
+        <td>{this.state.id + 1}</td>
         <td>
           <input type="text" className="c-input"
             value={this.state.name}

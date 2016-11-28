@@ -13,8 +13,8 @@ class ResourcePlans extends React.Component {
     let data = ResourcePlanStore.getAll();
 
     this.state = {
-      data: data,
-      startDate: props.startDate
+      data: data.resourcePlans,
+      startDate: data.startDate
     };
 
     this.handleAddWeek = this.handleAddWeek.bind(this);
@@ -49,10 +49,10 @@ class ResourcePlans extends React.Component {
     let resourcePlanElements = this.state.data.map(function(rp, idx) {
       return (
         <ResourcePlan
-          id={rp.id}
+          id={idx}
           name={rp.name}
           allocations={rp.allocations}
-          key={rp.id} />
+          key={idx} />
       );
     });
 
@@ -80,9 +80,5 @@ class ResourcePlans extends React.Component {
     );
   }
 }
-
-ResourcePlans.propTypes = {
-  startDate: React.PropTypes.instanceOf(Date)
-};
 
 export default ResourcePlans;
