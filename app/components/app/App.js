@@ -1,11 +1,6 @@
 import React from 'react';
 import ResourcePlanStore from '../../stores/ResourcePlanStore';
-import TabBar from '../tab-bar/TabBar';
-import TabList from '../tab-bar/TabList';
-import Tab from '../tab-bar/Tab';
-import TabPanel from '../tab-bar/TabPanel';
-import ResourcePlans from '../resource-plans-table/ResourcePlans';
-import AllocationByMonth from '../charts/AllocationByMonth';
+import Nav from './Nav';
 
 class App extends React.Component {
 
@@ -31,28 +26,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <TabBar>
-        <TabList>
-          <Tab>Worksheet</Tab>
-          <Tab>Monthly</Tab>
-          <Tab>Burndown</Tab>
-        </TabList>
-        <TabPanel>
-          <ResourcePlans
-            startDate={this.state.startDate}
-            resourcePlans={this.state.resourcePlans} />
-        </TabPanel>
-        <TabPanel>
-          <AllocationByMonth height={400} width={600}
-            startDate={this.state.startDate}
-            resourcePlans={this.state.resourcePlans} />
-        </TabPanel>
-        <TabPanel>
-          Burndown
-        </TabPanel>
-      </TabBar>
+      <div>
+        <Nav />
+        {this.props.children &&
+         React.cloneElement(this.props.children, {
+           startDate: this.state.startDate,
+           resourcePlans: this.state.resourcePlans
+         })}
+      </div>
     );
   }
 }
+
+App.propTypes = {
+  children: React.PropTypes.any
+};
 
 export default App;
