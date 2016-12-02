@@ -44,7 +44,7 @@ class ResourcePlans extends React.Component {
           onClick={this.handleAddResource} className="waves-effect waves-light btn">
           Add Resource
         </button>
-        <table className="bordered highlight rp-resource-plan-table">
+        <table className="highlight rp-resource-plan-table">
           <thead>
             <WeeklyHeader
               numberOfWeeks={numberOfWeeks}

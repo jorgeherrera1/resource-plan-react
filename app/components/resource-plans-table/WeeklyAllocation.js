@@ -20,7 +20,7 @@ class WeeklyAllocation extends React.Component {
   render() {
     return (
       <td>
-        <input type="text"
+        <input type="text" className="center-align"
           value={this.props.hours}
           onChange={this.handleHoursChanged} />
       </td>

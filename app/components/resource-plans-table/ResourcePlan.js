@@ -46,7 +46,7 @@ class ResourcePlan extends React.Component {
             onChange={this.handleNameChanged}/>
         </td>
         {allocationElements}
-        <td>{totalHours}</td>
+        <td className="center-align">{totalHours}</td>
       </tr>
     );
   }
