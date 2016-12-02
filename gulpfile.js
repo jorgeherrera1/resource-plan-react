@@ -24,6 +24,11 @@ gulp.task('images', function() {
     .pipe(gulp.dest('public/images'));
 });
 
+gulp.task('fonts', function() {
+  return gulp.src(['./node_modules/materialize-css/fonts/**/*'])
+    .pipe(gulp.dest('public/fonts/'));
+});
+
 gulp.task('html', function() {
   return gulp.src('app/**/*.html')
     .pipe(htmlmin({
@@ -83,7 +88,7 @@ gulp.task('js', function() {
     .pipe(gulp.dest('public/js'));
 });
 
-gulp.task('serve', ['images', 'html', 'styles', 'js'], function() {
+gulp.task('serve', ['images', 'fonts', 'html', 'styles', 'js'], function() {
   browserSync.init({
     // Don't show any notifications in the browser
     notify: false,

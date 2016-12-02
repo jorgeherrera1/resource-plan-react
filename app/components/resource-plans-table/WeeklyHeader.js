@@ -12,7 +12,7 @@ class WeeklyHeader extends React.Component {
         <th className="rp-resource-id-col">#</th>
         <th className="rp-resource-name-col">Resource</th>
         {weeks}
-        <th className="u-font-center rp-resource-totals-col">Total</th>
+        <th className="rp-resource-totals-col">Total</th>
       </tr>
     );
   }
@@ -33,11 +33,11 @@ class WeeklyHeader extends React.Component {
       if (weekEnding.isSame(end)) {
         weekHeaderCss += ' rp-week-last-col';
         addRemoveWeekTooltip =
-        <div className="c-card c-card--arrow rp-add-remove-week-tooltip">
-          <button className="c-btn c-btn--primary c-btn--full">
+        <div className="rp-add-remove-week-tooltip">
+          <button>
             Add Week
           </button>
-          <button className="c-btn c-btn--tertiary c-btn--full">
+          <button>
             Remove Week
           </button>
         </div>;

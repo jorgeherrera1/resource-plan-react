@@ -28,11 +28,13 @@ class App extends React.Component {
     return (
       <div>
         <Nav />
-        {this.props.children &&
-         React.cloneElement(this.props.children, {
-           startDate: this.state.startDate,
-           resourcePlans: this.state.resourcePlans
-         })}
+        <div className="rp-content">
+          {this.props.children &&
+          React.cloneElement(this.props.children, {
+            startDate: this.state.startDate,
+            resourcePlans: this.state.resourcePlans
+          })}
+        </div>
       </div>
     );
   }

@@ -1,22 +1,29 @@
-@import "../../node_modules/scooter-css/scss/scooter.scss";
+@import "../../node_modules/materialize-css/sass/materialize.scss";
 
-body {
-  box-sizing: border-box;
-  padding-left: 100px;
-  padding-right: 100px;
-}
+// Colors
+$primary-color: color("indigo", "darken-2");
+$primary-color-light: lighten($primary-color, 15%);
+$primary-color-dark: darken($primary-color, 15%);
 
-.rp-header, .rp-app {
+$secondary-color: color("grey", "lighten-1");
+$success-color: color("green", "base");
+$error-color: color("red", "base");
+$link-color: color("light-blue", "darken-1");
+
+.rp-app {
   display: block;
   width: 100%;
 }
 
-.rp-tabs {
-  margin-bottom: 15px;
+.rp-logo {
+  width: 85%;
+  height: auto;
 }
 
 .rp-content {
   margin-top: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .rp-resource-plans {

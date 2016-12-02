@@ -36,11 +36,15 @@ class ResourcePlans extends React.Component {
     return (
       <div className="rp-resource-plans">
         <button
-          onClick={this.handleAddWeek} className="c-btn c-btn--primary">Add Week</button>
+          onClick={this.handleAddWeek} className="waves-effect waves-light btn">
+          Add Week
+        </button>
         &nbsp;&nbsp;&nbsp;
         <button
-          onClick={this.handleAddResource} className="c-btn c-btn--primary">Add Resource</button>
-        <table className="c-table rp-resource-plan-table">
+          onClick={this.handleAddResource} className="waves-effect waves-light btn">
+          Add Resource
+        </button>
+        <table className="bordered highlight rp-resource-plan-table">
           <thead>
             <WeeklyHeader
               numberOfWeeks={numberOfWeeks}

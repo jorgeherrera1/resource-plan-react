@@ -41,12 +41,12 @@ class ResourcePlan extends React.Component {
       <tr>
         <td>{this.props.id + 1}</td>
         <td>
-          <input type="text" className="c-input"
+          <input type="text"
             value={this.props.name}
             onChange={this.handleNameChanged}/>
         </td>
         {allocationElements}
-        <td className="u-font-center">{totalHours}</td>
+        <td>{totalHours}</td>
       </tr>
     );
   }

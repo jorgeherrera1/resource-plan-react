@@ -3,32 +3,22 @@ import {Link} from 'react-router';
 
 class Nav extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.renderTab = this.renderTab.bind(this);
-  }
-
-  renderTab(params) {
-    return (
-      <li role="presentation" className="c-tab-nav__tab">
-        <button
-          // onClick={}
-          role="tab"
-          aria-controls={params.isActive}
-          aria-selected={params.isActive}
-          aria-expanded={params.isActive}>test</button>
-      </li>
-    );
-  }
-
   render() {
     return (
-      <nav className="rp-tabs">
-        <ul className="c-tab-nav" role="tablist">
-          <Link to="/worksheet">{(params) => this.renderTab('Worksheet')}</Link>
-          <Link to="/monthly">{(params) => this.renderTab('Monthly')}</Link>
-        </ul>
+      <nav>
+        <div className="nav-wrapper">
+          <a href="#" className="brand-logo right">
+            <img className="rp-logo" src="images/4th-Source-logo-360x76.png" />
+          </a>
+          <ul id="nav-mobile" className="left hide-on-med-and-down">
+            <li>
+              <Link to="worksheet">Worksheet</Link>
+            </li>
+            <li>
+              <Link to="monthly">Monthly</Link>
+            </li>
+          </ul>
+        </div>
       </nav>
     );
   }

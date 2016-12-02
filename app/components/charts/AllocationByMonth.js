@@ -81,7 +81,7 @@ class AllocationByMonth extends React.Component {
 
   getData() {
     this.props.resourcePlans.forEach((resourcePlan) => {
-      
+      console.log(resourcePlan);
     });
   }
 

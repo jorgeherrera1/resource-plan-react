@@ -27,7 +27,7 @@ class TotalsFooter extends React.Component {
     weekTotals.push(grandTotal);
 
     return weekTotals.map((total, idx) => {
-      return <td className="u-font-center" key={idx}>{total}</td>;
+      return <td key={idx}>{total}</td>;
     });
   }
 }
