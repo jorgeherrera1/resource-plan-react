@@ -1,11 +1,11 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter} from 'react-router';
+import {HashRouter} from 'react-router';
 import App from './components/app/App';
 
 render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>,
+  </HashRouter>,
   document.getElementsByClassName('rp-app')[0]
 );

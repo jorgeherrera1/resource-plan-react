@@ -4,6 +4,12 @@ import {Link} from 'react-router';
 class Nav extends React.Component {
 
   render() {
+    const NavItem = ({onClick, href, isActive, label}) => (
+      <li className={isActive ? 'active' : ''}>
+        <a href={href}>{label}</a>
+      </li>
+    );
+
     return (
       <nav>
         <div className="nav-wrapper">
@@ -11,12 +17,8 @@ class Nav extends React.Component {
             <img className="rp-logo responsive-img" src="images/4th-Source-logo-360x76.png" />
           </a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
-            <li>
-              <Link to="worksheet">Worksheet</Link>
-            </li>
-            <li>
-              <Link to="monthly">Monthly</Link>
-            </li>
+            <Link to="/worksheet">{(params) => <NavItem label="Worksheet" {...params}/>}</Link>
+            <Link to="/monthly">{(params) => <NavItem label="Monthly" {...params}/>}</Link>
           </ul>
         </div>
       </nav>
