@@ -1,14 +1,14 @@
-@import "../../node_modules/materialize-css/sass/materialize.scss";
-
+@import "../../node_modules/materialize-css/sass/components/_color.scss";
 // Colors
 $primary-color: color("indigo", "darken-2");
-$primary-color-light: lighten($primary-color, 15%);
-$primary-color-dark: darken($primary-color, 15%);
+$primary-color-light: color("indigo", "lighten-2");
+$primary-color-dark: color("indigo", "darken-4");
 
 $secondary-color: color("grey", "lighten-1");
 $success-color: color("green", "base");
 $error-color: color("red", "base");
 $link-color: color("light-blue", "darken-1");
+@import "../../node_modules/materialize-css/sass/materialize.scss";
 
 .rp-app {
   display: block;
