@@ -8,7 +8,7 @@ class Nav extends React.Component {
       <nav>
         <div className="nav-wrapper">
           <a href="#" className="brand-logo right">
-            <img className="rp-logo" src="images/4th-Source-logo-360x76.png" />
+            <img className="rp-logo responsive-img" src="images/4th-Source-logo-360x76.png" />
           </a>
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <li>

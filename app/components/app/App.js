@@ -1,6 +1,9 @@
 import React from 'react';
 import ResourcePlanStore from '../../stores/ResourcePlanStore';
 import Nav from './Nav';
+import {Match, Redirect} from 'react-router';
+import ResourcePlans from '../resource-plans-table/ResourcePlans';
+import AllocationByMonth from '../charts/AllocationByMonth';
 
 class App extends React.Component {
 
@@ -28,12 +31,18 @@ class App extends React.Component {
     return (
       <div>
         <Nav />
-        <div className="rp-content">
-          {this.props.children &&
-          React.cloneElement(this.props.children, {
-            startDate: this.state.startDate,
-            resourcePlans: this.state.resourcePlans
-          })}
+        <div className="section container">
+          <Match pattern="/" exactly render={() => <Redirect to="/worksheet"/>} />
+          <Match pattern="/worksheet" render={() => (
+            <ResourcePlans
+              startDate={this.state.startDate}
+              resourcePlans={this.state.resourcePlans}/>
+            )} />
+          <Match pattern="/monthly" render={() => (
+            <AllocationByMonth
+              startDate={this.state.startDate}
+              resourcePlans={this.state.resourcePlans}/>
+            )} />
         </div>
       </div>
     );
