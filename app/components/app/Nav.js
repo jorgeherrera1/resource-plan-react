@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 class Nav extends React.Component {
 
   render() {
-    const NavItem = ({onClick, href, isActive, label}) => (
+    const NavItem = ({href, isActive, label}) => (
       <li className={isActive ? 'active' : ''}>
         <a href={href}>{label}</a>
       </li>

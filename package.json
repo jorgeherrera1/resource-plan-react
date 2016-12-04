@@ -5,7 +5,7 @@
   "private": true,
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [
     "resource",
@@ -36,6 +36,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.4",
     "install": "^0.8.1",
+    "jest-cli": "^17.0.3",
     "npm": "^3.10.5",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
