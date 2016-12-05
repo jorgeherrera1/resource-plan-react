@@ -42,22 +42,3 @@ $link-color: color("light-blue", "darken-1");
 .rp-week-col {
   width: 100px;
 }
-
-.rp-add-remove-week-tooltip {
-  width: 150px;
-}
-
-.rp-week-last-col {
-  .rp-add-remove-week-tooltip {
-    margin-top: 10px;
-    position: absolute;
-    visibility: hidden;
-    z-index: 1;
-  }
-}
-
-.rp-week-last-col:hover {
-  .rp-add-remove-week-tooltip {
-    visibility: visible;
-  }
-}

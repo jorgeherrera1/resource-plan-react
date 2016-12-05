@@ -1,8 +1,8 @@
 import {calculateWeeks} from '../ResourcePlanUtils';
 
-test('just a simple test', () => {
-  let startDate = new Date('December 7, 2016'),
-      numberOfWeeks = 3;
+test('weeks should be calculated', () => {
+  let startDate = new Date('December 7, 2016');
+  let numberOfWeeks = 3;
 
   expect(calculateWeeks(startDate, numberOfWeeks)).toEqual([
     {weekStarting: '04-Dec-2016', weekEnding: '10-Dec-2016'},

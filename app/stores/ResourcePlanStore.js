@@ -8,10 +8,10 @@ let data = {
   project: 'My Project',
   startDate: new Date(),
   resourcePlans: [
-    {name: 'Dev Lead', allocations: [20, 20, 20, 20, 20, 20, 20]},
-    {name: 'Sr Developer', allocations: [40, 40, 40, 40, 20, 20, 20]},
-    {name: 'Jr Developer', allocations: [40, 40, 20, 10, 20, 20, 20]},
-    {name: 'Jr Developer', allocations: [40, 40, 20, 10, 20, 20, 20]}
+    {name: 'Dev Lead', allocations: [20, 20, 20, 20]},
+    {name: 'Sr Developer', allocations: [40, 40, 40, 40]},
+    {name: 'Jr Developer', allocations: [40, 40, 20, 10]},
+    {name: 'Jr Developer', allocations: [40, 40, 20, 10]}
   ]
 };
 

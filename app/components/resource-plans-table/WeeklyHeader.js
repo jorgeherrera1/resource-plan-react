@@ -1,6 +1,5 @@
 import React from 'react';
-import moment from 'moment';
-import 'moment-range';
+import {calculateWeeks} from '../../utils/ResourcePlanUtils';
 
 class WeeklyHeader extends React.Component {
 
@@ -18,43 +17,19 @@ class WeeklyHeader extends React.Component {
   }
 
   _renderWeeks() {
-    let start = moment(this.props.startDate).startOf('week');
-    let end = start.clone()
-                   .add(this.props.numberOfWeeks - 1, 'weeks')
-                   .endOf('week');
-    let range = moment.range(start, end);
-    let weeks = [];
+    let weeks = calculateWeeks(this.props.startDate, this.props.numberOfWeeks);
 
-    range.by('weeks', function(weekStarting) {
-      let weekEnding = weekStarting.clone().endOf('week');
-      let weekHeaderCss = 'rp-week-col center-align';
+    return weeks.map((week, idx) => {
+      let {weekStarting, weekEnding} = week;
 
-      let addRemoveWeekTooltip;
-      if (weekEnding.isSame(end)) {
-        weekHeaderCss += ' rp-week-last-col';
-        addRemoveWeekTooltip =
-        <div className="rp-add-remove-week-tooltip">
-          <button>
-            Add Week
-          </button>
-          <button>
-            Remove Week
-          </button>
-        </div>;
-      }
-
-      weeks.push(
-        <th key={weeks.length} className={weekHeaderCss}>
-          {weekStarting.format('DD-MMM-YYYY')}
+      return (
+        <th key={idx} className="rp-week-col center-align">
+          {weekStarting}
           <br/>
-          {weekEnding.format('DD-MMM-YYYY')}
-          <br/>
-          {addRemoveWeekTooltip}
+          {weekEnding}
         </th>
       );
     });
-
-    return weeks;
   }
 }
 
