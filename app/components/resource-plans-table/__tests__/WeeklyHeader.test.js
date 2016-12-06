@@ -11,7 +11,7 @@ it('should render header', () => {
       numberOfWeeks={numberOfWeeks}
       startDate={startDate} />
   );
-  
+
   expect(weeklyHeader.type()).toBe('tr');
   expect(weeklyHeader.children().length).toBe(6);
   expect(weeklyHeader.childAt(0).html()).toBe(

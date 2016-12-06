@@ -5,6 +5,7 @@ var htmlmin = require('gulp-htmlmin');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var eslint = require('gulp-eslint');
+var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
@@ -57,7 +58,8 @@ gulp.task('styles', function() {
     'bb >= 10'
   ];
 
-  return gulp.src(['app/styles/**/*.scss'])
+  return gulp.src(['node_modules/fixed-data-table/dist/fixed-data-table.css', 'app/styles/**/*.scss'])
+    .pipe(concat('main.css'))
     .pipe(sourcemaps.init())
     .pipe(sass({precision: 10}).on('error', sass.logError))
     .pipe(autoprefixer(AUTOPREFIXER_BROWSERS))
