@@ -58,7 +58,7 @@ gulp.task('styles', function() {
     'bb >= 10'
   ];
 
-  return gulp.src(['node_modules/fixed-data-table/dist/fixed-data-table.css', 'app/styles/**/*.scss'])
+  return gulp.src(['node_modules/fixed-data-table/dist/fixed-data-table-base.css', 'app/styles/**/*.scss'])
     .pipe(concat('main.css'))
     .pipe(sourcemaps.init())
     .pipe(sass({precision: 10}).on('error', sass.logError))

@@ -1,10 +1,15 @@
 import React from 'react';
 import {Table, Column, Cell} from 'fixed-data-table';
+import ResourcePlanActions from '../../actions/ResourcePlanActions';
 
 class ResourcePlanTable extends React.Component {
 
   numberOfResources() {
     return this.props.resourcePlans.length;
+  }
+
+  handleNameChanged(id, name) {
+    ResourcePlanActions.updateResourceName(id, name);
   }
 
   render() {
@@ -25,7 +30,13 @@ class ResourcePlanTable extends React.Component {
         <Column
           header={<Cell>Name</Cell>}
           width={220}
-          cell={({rowIndex}) => (this.props.resourcePlans[rowIndex].name)}
+          cell={({rowIndex}) => (
+            <input type="text"
+              value={this.props.resourcePlans[rowIndex].name}
+              onChange={(e) => {
+                this.handleNameChanged(rowIndex, e.target.value);
+              }}/>
+          )}
         />
       </Table>
     );
