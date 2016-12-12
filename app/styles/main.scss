@@ -9,6 +9,7 @@ $success-color: color("green", "base");
 $error-color: color("red", "base");
 $link-color: color("light-blue", "darken-1");
 @import "../../node_modules/materialize-css/sass/materialize.scss";
+@import "fixed-data-table";
 
 .rp-app {
   width: 100%;

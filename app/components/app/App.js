@@ -11,21 +11,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = ResourcePlanStore.getAll();
+    this.state = ResourcePlanStore.getData();
 
     this.onDataChange = this.onDataChange.bind(this);
   }
 
   componentDidMount() {
-    ResourcePlanStore.addChangeListener(this.onDataChange);
+    this.storeListenerToken = ResourcePlanStore.addListener(this.onDataChange);
   }
 
   componentWillUnmount() {
-    ResourcePlanStore.removeChangeListener(this.onDataChange);
+    this.storeListenerToken.remove();
   }
 
   onDataChange() {
-    this.setState(ResourcePlanStore.getAll());
+    this.setState(ResourcePlanStore.getData());
   }
 
   render() {
