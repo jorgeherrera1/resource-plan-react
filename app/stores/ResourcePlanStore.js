@@ -49,13 +49,15 @@ class ResourcePlanStore extends Store {
   }
 
   __onDispatch(action) {
-    switch (action.actionType) {
+    const {actionType, payload} = action;
+
+    switch (actionType) {
       case ResourcePlanConstants.UPDATE_RESOURCE_NAME:
-        this.updateResourceName(action.resourcePlanId, action.name);
+        this.updateResourceName(payload.resourcePlanId, payload.name);
         break;
 
       case ResourcePlanConstants.UPDATE_WEEKLY_ALLOCATION:
-        this.updateWeeklyAllocation(action.resourcePlanId, action.weekId, action.hours);
+        this.updateWeeklyAllocation(payload.resourcePlanId, payload.weekId, payload.hours);
         break;
 
       case ResourcePlanConstants.ADD_WEEK:

@@ -3,20 +3,17 @@ import * as ResourcePlanConstants from '../constants/ResourcePlanConstants';
 
 var ResourcePlanActions = {
 
-  updateResourceName: function(resourcePlanId, name) {
+  updateResourceName: function(resourcePlanId, resourceName) {
     AppDispatcher.dispatch({
       actionType: ResourcePlanConstants.UPDATE_RESOURCE_NAME,
-      resourcePlanId: resourcePlanId,
-      name: name
+      payload: {resourcePlanId, resourceName}
     });
   },
 
   updateWeeklyAllocation: function(resourcePlanId, weekId, hours) {
     AppDispatcher.dispatch({
       actionType: ResourcePlanConstants.UPDATE_WEEKLY_ALLOCATION,
-      resourcePlanId: resourcePlanId,
-      weekId: weekId,
-      hours: hours
+      payload: {resourcePlanId, weekId, hours}
     });
   },
 
