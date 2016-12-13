@@ -35,6 +35,7 @@ class ResourcePlanTable extends React.Component {
           align="center"
           cell={({rowIndex}) => (
             <input type="text"
+              className="center-align"
               value={this.props.resourcePlans[rowIndex].allocations[weekId]}
               onChange={(e) => {
                 this.handleWeeklyAllocationChanged(rowIndex, weekId, e.target.value);
@@ -55,7 +56,7 @@ class ResourcePlanTable extends React.Component {
       <Table
         headerHeight={50}
         rowsCount={numberOfResources}
-        rowHeight={50}
+        rowHeight={90}
         groupHeaderHeight={50}
         width={800}
         maxHeight={600}>
