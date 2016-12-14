@@ -17,3 +17,27 @@ export function calculateWeeks(startDate, numberOfWeeks) {
 
   return weeks;
 }
+
+export function summarizeByMonth(startDate, resourcePlans) {
+  const numberOfWeeks = resourcePlans[0].allocations.length;
+  const weeks = calculateWeeks(startDate, numberOfWeeks);
+
+  let totalHoursByMonth = {};
+
+  resourcePlans.forEach((resourcePlan) => {
+    resourcePlan.allocations.reduce((resourceHoursByMonth, weekHours, weekId) => {
+      const hoursByDay = weekHours / 5;
+      const start = moment(weeks[weekId].weekStarting, 'DD-MMM-YYYY').day('Monday');
+      const end = moment(weeks[weekId].weekEnding, 'DD-MMM-YYYY').day('Friday');
+
+      moment.range(start, end).by('days', (day) => {
+        const month = day.format('MMMM');
+        resourceHoursByMonth[month] = (resourceHoursByMonth[month] + hoursByDay) || hoursByDay;
+      });
+
+      return resourceHoursByMonth;
+    }, totalHoursByMonth);
+  });
+
+  return totalHoursByMonth;
+}

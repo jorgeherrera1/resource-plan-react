@@ -36,20 +36,21 @@ class AllocationByMonth extends React.Component {
   }
 
   renderChart() {
-    let monthLabels = this.getMonthLabels();
-    let monthBackgroundColors = monthLabels.map((month) => {
+    const monthLabels = this.getMonthLabels();
+    const monthBackgroundColors = monthLabels.map((month) => {
       return MONTH_COLORS[month].background;
     });
-    let monthBorderColors = monthLabels.map((month) => {
+    const monthBorderColors = monthLabels.map((month) => {
       return MONTH_COLORS[month].border;
     });
+    this.getData();
 
     const node = ReactDOM.findDOMNode(this);
 
     this.chartInstance = new Chart(node, {
       type: 'bar',
       data: {
-        labels: this.getMonthLabels(),
+        labels: monthLabels,
         datasets: [{
           label: 'Number of Hours',
           data: [12, 19, 25],
