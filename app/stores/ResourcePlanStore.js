@@ -1,5 +1,6 @@
 import {Store} from 'flux/utils';
 import AppDispatcher from '../dispatcher/AppDispatcher';
+import {calculateWeeks} from '../utils/ResourcePlanUtils';
 import * as ResourcePlanConstants from '../constants/ResourcePlanConstants';
 
 let data = {
@@ -38,6 +39,17 @@ class ResourcePlanStore extends Store {
 
   getData() {
     return data;
+  }
+
+  getNumberOfWeeks() {
+    return data.resourcePlans[0].allocations.length;
+  }
+
+  getWeeks() {
+    const numberOfWeeks = this.getNumberOfWeeks();
+    const weeks = calculateWeeks(data.startDate, numberOfWeeks);
+
+    return weeks;
   }
 
   __onDispatch(action) {
