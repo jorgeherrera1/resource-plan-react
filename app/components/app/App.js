@@ -48,7 +48,8 @@ class App extends React.Component {
           <Match pattern="/" exactly render={() => <Redirect to="/worksheet"/>} />
           <Match pattern="/worksheet" render={() => (
             <ResourcePlans
-              startDate={this.state.data.startDate}
+              numberOfWeeks={this.state.metadata.numberOfWeeks}
+              weeks={this.state.metadata.weeks}
               resourcePlans={this.state.data.resourcePlans}/>
             )} />
           <Match pattern="/monthly" render={() => (

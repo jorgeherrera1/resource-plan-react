@@ -1,10 +1,19 @@
 import React from 'react';
-import {calculateWeeks} from '../../utils/ResourcePlanUtils';
 
 class WeeklyHeader extends React.Component {
 
   render() {
-    let weeks = this._renderWeeks();
+    const weeks = this.props.weeks.map((week, idx) => {
+      const {weekStarting, weekEnding} = week;
+
+      return (
+        <th key={idx} className="rp-week-col center-align">
+          {weekStarting}
+          <br/>
+          {weekEnding}
+        </th>
+      );
+    });
 
     return (
       <tr>
@@ -16,26 +25,10 @@ class WeeklyHeader extends React.Component {
     );
   }
 
-  _renderWeeks() {
-    let weeks = calculateWeeks(this.props.startDate, this.props.numberOfWeeks);
-
-    return weeks.map((week, idx) => {
-      let {weekStarting, weekEnding} = week;
-
-      return (
-        <th key={idx} className="rp-week-col center-align">
-          {weekStarting}
-          <br/>
-          {weekEnding}
-        </th>
-      );
-    });
-  }
 }
 
 WeeklyHeader.propTypes = {
-  startDate: React.PropTypes.instanceOf(Date),
-  numberOfWeeks: React.PropTypes.number
+  weeks: React.PropTypes.array
 };
 
 export default WeeklyHeader;

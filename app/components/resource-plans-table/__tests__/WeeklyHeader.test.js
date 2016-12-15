@@ -3,13 +3,15 @@ import {shallow} from 'enzyme';
 import WeeklyHeader from '../WeeklyHeader';
 
 it('should render header', () => {
-  const startDate = new Date('December 7, 2016');
-  const numberOfWeeks = 3;
+  const weeks = [
+    {weekStarting: '04-Dec-2016', weekEnding: '10-Dec-2016'},
+    {weekStarting: '11-Dec-2016', weekEnding: '17-Dec-2016'},
+    {weekStarting: '18-Dec-2016', weekEnding: '24-Dec-2016'}
+  ];
 
   const weeklyHeader = shallow(
     <WeeklyHeader
-      numberOfWeeks={numberOfWeeks}
-      startDate={startDate} />
+      weeks={weeks} />
   );
 
   expect(weeklyHeader.type()).toBe('tr');

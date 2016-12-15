@@ -21,9 +21,7 @@ class ResourcePlans extends React.Component {
   }
 
   render() {
-    const numberOfWeeks = this.props.resourcePlans[0].allocations.length;
-
-    let resourcePlanElements = this.props.resourcePlans.map(function(rp, idx) {
+    const resourcePlanElements = this.props.resourcePlans.map(function(rp, idx) {
       return (
         <ResourcePlan
           id={idx}
@@ -47,11 +45,10 @@ class ResourcePlans extends React.Component {
         <table className="highlight rp-resource-plan-table">
           <thead>
             <WeeklyHeader
-              numberOfWeeks={numberOfWeeks}
-              startDate={this.props.startDate} />
+              weeks={this.props.weeks} />
           </thead>
           <tfoot>
-            <TotalsFooter numberOfWeeks={numberOfWeeks} data={this.props.resourcePlans} />
+            <TotalsFooter numberOfWeeks={this.props.numberOfWeeks} data={this.props.resourcePlans} />
           </tfoot>
           <tbody>
             {resourcePlanElements}
@@ -63,7 +60,8 @@ class ResourcePlans extends React.Component {
 }
 
 ResourcePlans.propTypes = {
-  startDate: React.PropTypes.instanceOf(Date),
+  numberOfWeeks: React.PropTypes.number,
+  weeks: React.PropTypes.array,
   resourcePlans: React.PropTypes.array
 };
 
