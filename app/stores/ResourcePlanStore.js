@@ -2,50 +2,42 @@ import {Store} from 'flux/utils';
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import * as ResourcePlanConstants from '../constants/ResourcePlanConstants';
 
+let data = {
+  project: 'My Project',
+  startDate: new Date(),
+  resourcePlans: [
+    {name: 'Dev Lead', allocations: [20, 20, 20, 20]},
+    {name: 'Sr Developer', allocations: [40, 40, 40, 40]},
+    {name: 'Jr Developer', allocations: [40, 40, 20, 10]},
+    {name: 'Jr Developer', allocations: [40, 40, 20, 10]}
+  ]
+};
+
+function updateResourceName(resourcePlanId, resourceName) {
+  data.resourcePlans[resourcePlanId].name = resourceName;
+}
+
+function updateWeeklyAllocation(resourcePlanId, weekId, hours) {
+  data.resourcePlans[resourcePlanId].allocations[weekId] = Number(hours);
+}
+
+function addWeek() {
+  for (let i = 0; i < data.resourcePlans.length; i++) {
+    data.resourcePlans[i].allocations.push(0);
+  }
+}
+
+function addResource() {
+  data.resourcePlans.push({
+    name: 'Developer',
+    allocations: new Array(data.resourcePlans[0].allocations.length).fill(0)
+  });
+}
+
 class ResourcePlanStore extends Store {
 
-  constructor(dispatcher) {
-    super(dispatcher);
-
-    this.data = {
-      project: 'My Project',
-      startDate: new Date(),
-      resourcePlans: [
-        {name: 'Dev Lead', allocations: [20, 20, 20, 20]},
-        {name: 'Sr Developer', allocations: [40, 40, 40, 40]},
-        {name: 'Jr Developer', allocations: [40, 40, 20, 10]},
-        {name: 'Jr Developer', allocations: [40, 40, 20, 10]}
-      ]
-    };
-  }
-
   getData() {
-    return this.data;
-  }
-
-  updateResourceName(resourcePlanId, resourceName) {
-    this.data.resourcePlans[resourcePlanId].name = resourceName;
-    this.__emitChange();
-  }
-
-  updateWeeklyAllocation(resourcePlanId, weekId, hours) {
-    this.data.resourcePlans[resourcePlanId].allocations[weekId] = Number(hours);
-    this.__emitChange();
-  }
-
-  addWeek() {
-    for (let i = 0; i < this.data.resourcePlans.length; i++) {
-      this.data.resourcePlans[i].allocations.push(0);
-    }
-    this.__emitChange();
-  }
-
-  addResource() {
-    this.data.resourcePlans.push({
-      name: 'Developer',
-      allocations: new Array(this.data.resourcePlans[0].allocations.length).fill(0)
-    });
-    this.__emitChange();
+    return data;
   }
 
   __onDispatch(action) {
@@ -53,19 +45,23 @@ class ResourcePlanStore extends Store {
 
     switch (actionType) {
       case ResourcePlanConstants.UPDATE_RESOURCE_NAME:
-        this.updateResourceName(payload.resourcePlanId, payload.name);
+        updateResourceName(payload.resourcePlanId, payload.name);
+        this.__emitChange();
         break;
 
       case ResourcePlanConstants.UPDATE_WEEKLY_ALLOCATION:
-        this.updateWeeklyAllocation(payload.resourcePlanId, payload.weekId, payload.hours);
+        updateWeeklyAllocation(payload.resourcePlanId, payload.weekId, payload.hours);
+        this.__emitChange();
         break;
 
       case ResourcePlanConstants.ADD_WEEK:
-        this.addWeek();
+        addWeek();
+        this.__emitChange();
         break;
 
       case ResourcePlanConstants.ADD_RESOURCE:
-        this.addResource();
+        addResource();
+        this.__emitChange();
         break;
 
       default:
