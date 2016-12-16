@@ -14,7 +14,6 @@ class App extends React.Component {
     this.state = {
       data: ResourcePlanStore.getData(),
       metadata: {
-        numberOfWeeks: ResourcePlanStore.getNumberOfWeeks(),
         weeks: ResourcePlanStore.getWeeks()
       }
     };
@@ -34,7 +33,6 @@ class App extends React.Component {
     this.setState({
       data: ResourcePlanStore.getData(),
       metadata: {
-        numberOfWeeks: ResourcePlanStore.getNumberOfWeeks(),
         weeks: ResourcePlanStore.getWeeks()
       }
     });
@@ -48,13 +46,12 @@ class App extends React.Component {
           <Match pattern="/" exactly render={() => <Redirect to="/worksheet"/>} />
           <Match pattern="/worksheet" render={() => (
             <ResourcePlans
-              numberOfWeeks={this.state.metadata.numberOfWeeks}
               weeks={this.state.metadata.weeks}
               resourcePlans={this.state.data.resourcePlans}/>
             )} />
           <Match pattern="/monthly" render={() => (
             <AllocationByMonth
-              startDate={this.state.data.startDate}
+              weeks={this.state.metadata.weeks}
               resourcePlans={this.state.data.resourcePlans}/>
             )} />
           <Match pattern="/test" render={() => (

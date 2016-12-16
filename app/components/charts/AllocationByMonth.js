@@ -15,24 +15,19 @@ class AllocationByMonth extends React.Component {
   }
 
   getMonthLabels() {
-    const numberOfWeeks = this.props.resourcePlans[0].allocations.length;
-    const start = moment(this.props.startDate);
-    const end = start.clone().add(numberOfWeeks - 1, 'weeks').endOf('month');
-    const range = moment.range(start, end);
+    const start = moment(this.props.weeks[0].weekStarting, 'DD-MMM-YYYY');
+    const end = moment(this.props.weeks[this.props.weeks.length - 1].weekEnding, 'DD-MMM-YYYY');
+
+    console.log(start);
+    console.log(end);
 
     let months = [];
-
-    range.by('months', function(month) {
+    moment.range(start, end).by('months', function(month) {
       months.push(month.format('MMMM'));
     });
+    console.log(months);
 
     return months;
-  }
-
-  getData() {
-    this.props.resourcePlans.forEach((resourcePlan) => {
-      console.log(resourcePlan);
-    });
   }
 
   renderChart() {
@@ -43,7 +38,6 @@ class AllocationByMonth extends React.Component {
     const monthBorderColors = monthLabels.map((month) => {
       return MONTH_COLORS[month].border;
     });
-    this.getData();
 
     const node = ReactDOM.findDOMNode(this);
 
@@ -83,7 +77,7 @@ AllocationByMonth.displayName = 'AllocationByMonth';
 AllocationByMonth.propTypes = {
   height: React.PropTypes.number,
   width: React.PropTypes.number,
-  startDate: React.PropTypes.instanceOf(Date),
+  weeks: React.PropTypes.array,
   resourcePlans: React.PropTypes.array
 };
 

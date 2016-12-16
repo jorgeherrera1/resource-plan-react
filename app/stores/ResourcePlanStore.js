@@ -57,7 +57,7 @@ class ResourcePlanStore extends Store {
 
     switch (actionType) {
       case ResourcePlanConstants.UPDATE_RESOURCE_NAME:
-        updateResourceName(payload.resourcePlanId, payload.name);
+        updateResourceName(payload.resourcePlanId, payload.resourceName);
         this.__emitChange();
         break;
 

@@ -48,7 +48,7 @@ class ResourcePlans extends React.Component {
               weeks={this.props.weeks} />
           </thead>
           <tfoot>
-            <TotalsFooter numberOfWeeks={this.props.numberOfWeeks} data={this.props.resourcePlans} />
+            <TotalsFooter numberOfWeeks={this.props.weeks.length} data={this.props.resourcePlans} />
           </tfoot>
           <tbody>
             {resourcePlanElements}
@@ -60,7 +60,6 @@ class ResourcePlans extends React.Component {
 }
 
 ResourcePlans.propTypes = {
-  numberOfWeeks: React.PropTypes.number,
   weeks: React.PropTypes.array,
   resourcePlans: React.PropTypes.array
 };

@@ -21,8 +21,9 @@ test('resource plans should be summarized by month', () => {
   ];
 
   const hoursByMonth = summarizeByMonth(startDate, resourcePlans);
-  
-  expect(Object.keys(hoursByMonth)).toEqual(['December', 'January']);
-  expect(hoursByMonth['December']).toBe(380);
-  expect(hoursByMonth['January']).toBe(100);
+  const expectedMonths = ['December', 'January'];
+
+  expect(Object.keys(hoursByMonth)).toEqual(expectedMonths);
+  expect(hoursByMonth[expectedMonths[0]]).toBe(380);
+  expect(hoursByMonth[expectedMonths[1]]).toBe(100);
 });
