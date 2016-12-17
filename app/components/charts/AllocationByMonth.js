@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'chart.js';
 import moment from 'moment';
+import Immutable from 'immutable';
 import {MONTH_COLORS} from '../../constants/ChartColorConstants';
+import {summarizeByMonth} from '../../utils/ResourcePlanUtils';
 
 class AllocationByMonth extends React.Component {
 
@@ -15,19 +17,20 @@ class AllocationByMonth extends React.Component {
   }
 
   getMonthLabels() {
-    const start = moment(this.props.weeks[0].weekStarting, 'DD-MMM-YYYY');
-    const end = moment(this.props.weeks[this.props.weeks.length - 1].weekEnding, 'DD-MMM-YYYY');
+    let monthsLabels = [];
+    this.props.weeks.forEach((week, idx) => {
+      if (idx === 0) {
+        monthsLabels.push(moment(week.weekStarting, 'DD-MMM-YYYY').format('MMMM'));
+      }
 
-    console.log(start);
-    console.log(end);
-
-    let months = [];
-    moment.range(start, end).by('months', function(month) {
-      months.push(month.format('MMMM'));
+      monthsLabels.push(moment(week.weekEnding, 'DD-MMM-YYYY').format('MMMM'));
     });
-    console.log(months);
+    
+    return Immutable.OrderedSet(monthsLabels).toArray();
+  }
 
-    return months;
+  getData() {
+    return [];
   }
 
   renderChart() {
@@ -47,7 +50,7 @@ class AllocationByMonth extends React.Component {
         labels: monthLabels,
         datasets: [{
           label: 'Number of Hours',
-          data: [12, 19, 25],
+          data: [12, 19],
           backgroundColor: monthBackgroundColors,
           borderColor: monthBorderColors,
           borderWidth: 1

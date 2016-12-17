@@ -1,7 +1,7 @@
 import AppDispatcher from '../dispatcher/AppDispatcher';
 import * as ResourcePlanConstants from '../constants/ResourcePlanConstants';
 
-var ResourcePlanActions = {
+const ResourcePlanActions = {
 
   updateResourceName: function(resourcePlanId, resourceName) {
     AppDispatcher.dispatch({

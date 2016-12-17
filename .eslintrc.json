@@ -6,11 +6,19 @@
   "plugins": [
     "react"
   ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "rules": {
     "max-len": ["error", 100],
     "arrow-parens": ["error", "always"],
     "linebreak-style": "off",
-    "require-jsdoc": "off"
+    "require-jsdoc": "off",
+    "comma-dangle": ["error", "never"]
   },
   "env": {
     "browser": true,
