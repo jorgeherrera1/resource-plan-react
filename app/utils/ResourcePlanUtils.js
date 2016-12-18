@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import moment from 'moment';
 import 'moment-range';
 
@@ -23,7 +24,7 @@ export function summarizeByWeek(weeks, resourcePlans) {
 
   weeks.forEach((week, weekId) => {
     weeklyTotals[weekId] = Object.assign({totalHours: 0}, week);
-    
+
     resourcePlans.forEach((resourcePlan) => {
       weeklyTotals[weekId].totalHours += resourcePlan.allocations[weekId];
     });
@@ -33,5 +34,18 @@ export function summarizeByWeek(weeks, resourcePlans) {
 }
 
 export function summarizeByMonth(weeks, resourcePlans) {
-  
+  const weeklyTotals = summarizeByWeek(weeks, resourcePlans);
+  let monthlyTotals = Immutable.OrderedMap();
+  weeklyTotals.forEach((week, weekId) => {
+    const hoursByDay = week.totalHours / 5;
+    const start = moment(week.weekStarting, 'DD-MMM-YYYY').day('Monday');
+    const end = moment(week.weekEnding, 'DD-MMM-YYYY').day('Friday');
+
+    moment.range(start, end).by('days', (day) => {
+      const month = day.format('MMMM');
+      monthlyTotals = monthlyTotals.set(month, monthlyTotals.get(month, 0) + hoursByDay);
+    });
+  });
+
+  return monthlyTotals.toArray();
 }

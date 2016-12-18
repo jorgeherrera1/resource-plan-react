@@ -25,12 +25,14 @@ class AllocationByMonth extends React.Component {
 
       monthsLabels.push(moment(week.weekEnding, 'DD-MMM-YYYY').format('MMMM'));
     });
-    
+
     return Immutable.OrderedSet(monthsLabels).toArray();
   }
 
   getData() {
-    return [];
+    const data = summarizeByMonth(this.props.weeks, this.props.resourcePlans);
+
+    return data;
   }
 
   renderChart() {
@@ -41,6 +43,7 @@ class AllocationByMonth extends React.Component {
     const monthBorderColors = monthLabels.map((month) => {
       return MONTH_COLORS[month].border;
     });
+    const data = this.getData();
 
     const node = ReactDOM.findDOMNode(this);
 
@@ -50,7 +53,7 @@ class AllocationByMonth extends React.Component {
         labels: monthLabels,
         datasets: [{
           label: 'Number of Hours',
-          data: [12, 19],
+          data: data,
           backgroundColor: monthBackgroundColors,
           borderColor: monthBorderColors,
           borderWidth: 1
