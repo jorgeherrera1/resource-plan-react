@@ -36,7 +36,7 @@ function addResource() {
   });
 }
 
-var ResourcePlanStore = Object.assign({}, EventEmitter.prototype, {
+const ResourcePlanStore = Object.assign({}, EventEmitter.prototype, {
 
   getAll: function() {
     return data;

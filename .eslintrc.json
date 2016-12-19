@@ -18,7 +18,8 @@
     "arrow-parens": ["error", "always"],
     "linebreak-style": "off",
     "require-jsdoc": "off",
-    "comma-dangle": ["error", "never"]
+    "comma-dangle": ["error", "never"],
+    "new-cap": ["error", {"capIsNewExceptionPattern" : "^Immutable\\.." }]
   },
   "env": {
     "browser": true,

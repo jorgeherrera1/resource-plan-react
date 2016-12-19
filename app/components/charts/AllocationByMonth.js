@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Chart from 'chart.js';
 import moment from 'moment';
 import Immutable from 'immutable';
@@ -45,9 +44,7 @@ class AllocationByMonth extends React.Component {
     });
     const data = this.getData();
 
-    const node = ReactDOM.findDOMNode(this);
-
-    this.chartInstance = new Chart(node, {
+    this.chartInstance = new Chart(this.node, {
       type: 'bar',
       data: {
         labels: monthLabels,
@@ -73,7 +70,9 @@ class AllocationByMonth extends React.Component {
 
   render() {
     return (
-      <canvas height={this.props.height} width={this.props.width}></canvas>
+      <canvas ref={(node) => (this.node = node)}
+        height={this.props.height} width={this.props.width}>
+      </canvas>
     );
   }
 
