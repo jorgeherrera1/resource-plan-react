@@ -20,13 +20,11 @@ export function calculateWeeks(startDate, numberOfWeeks) {
 }
 
 export function summarizeByWeek(weeks, resourcePlans) {
-  let weeklyTotals = [];
+  let weeklyTotals = new Array(weeks.length).fill(0);
 
   weeks.forEach((week, weekId) => {
-    weeklyTotals[weekId] = Object.assign({totalHours: 0}, week);
-
     resourcePlans.forEach((resourcePlan) => {
-      weeklyTotals[weekId].totalHours += resourcePlan.allocations[weekId];
+      weeklyTotals[weekId] += resourcePlan.allocations[weekId];
     });
   });
 
@@ -36,10 +34,10 @@ export function summarizeByWeek(weeks, resourcePlans) {
 export function summarizeByMonth(weeks, resourcePlans) {
   const weeklyTotals = summarizeByWeek(weeks, resourcePlans);
   let monthlyTotals = Immutable.OrderedMap();
-  weeklyTotals.forEach((week, weekId) => {
-    const hoursByDay = week.totalHours / 5;
-    const start = moment(week.weekStarting).day('Monday');
-    const end = moment(week.weekEnding).day('Friday');
+  weeklyTotals.forEach((weekTotal, weekId) => {
+    const hoursByDay = weekTotal / 5;
+    const start = moment(weeks[weekId].weekStarting).day('Monday');
+    const end = moment(weeks[weekId].weekEnding).day('Friday');
 
     moment.range(start, end).by('days', (day) => {
       const month = day.format('MMMM');

@@ -36,7 +36,7 @@ test('resource plans should be summarized by week', () => {
 
   expect(weeklyTotals.length).toBe(weeks.length);
   weeklyTotals.forEach((week, weekId) => {
-    expect(week.totalHours).toBe(expectedTotals[weekId]);
+    expect(week).toBe(expectedTotals[weekId]);
   });
 });
 
