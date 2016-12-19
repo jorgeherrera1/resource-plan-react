@@ -4,14 +4,14 @@ import 'moment-range';
 
 export function calculateWeeks(startDate, numberOfWeeks) {
   // moments and dates are mutable so we clone start date
-  let start = moment(startDate).startOf('week');
-  let end = moment(startDate).add(numberOfWeeks - 1, 'weeks').endOf('week');
+  const start = moment(startDate).startOf('week');
+  const end = moment(startDate).add(numberOfWeeks - 1, 'weeks').endOf('week');
 
   let weeks = [];
 
   moment.range(start, end).by('weeks', (week) => {
-    let weekStarting = week.format('DD-MMM-YYYY');
-    let weekEnding = week.endOf('week').format('DD-MMM-YYYY');
+    const weekStarting = week.clone();
+    const weekEnding = week.clone().endOf('week');
 
     weeks.push({weekStarting, weekEnding});
   });
@@ -38,8 +38,8 @@ export function summarizeByMonth(weeks, resourcePlans) {
   let monthlyTotals = Immutable.OrderedMap();
   weeklyTotals.forEach((week, weekId) => {
     const hoursByDay = week.totalHours / 5;
-    const start = moment(week.weekStarting, 'DD-MMM-YYYY').day('Monday');
-    const end = moment(week.weekEnding, 'DD-MMM-YYYY').day('Friday');
+    const start = moment(week.weekStarting).day('Monday');
+    const end = moment(week.weekEnding).day('Friday');
 
     moment.range(start, end).by('days', (day) => {
       const month = day.format('MMMM');

@@ -1,6 +1,5 @@
 import React from 'react';
 import Chart from 'chart.js';
-import moment from 'moment';
 import Immutable from 'immutable';
 import {MONTH_COLORS} from '../../constants/ChartColorConstants';
 import {summarizeByMonth} from '../../utils/ResourcePlanUtils';
@@ -19,10 +18,10 @@ class AllocationByMonth extends React.Component {
     let monthsLabels = [];
     this.props.weeks.forEach((week, idx) => {
       if (idx === 0) {
-        monthsLabels.push(moment(week.weekStarting, 'DD-MMM-YYYY').format('MMMM'));
+        monthsLabels.push(week.weekStarting.format('MMMM'));
       }
 
-      monthsLabels.push(moment(week.weekEnding, 'DD-MMM-YYYY').format('MMMM'));
+      monthsLabels.push(week.weekEnding.format('MMMM'));
     });
 
     return Immutable.OrderedSet(monthsLabels).toArray();

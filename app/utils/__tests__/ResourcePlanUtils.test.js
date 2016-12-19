@@ -1,22 +1,28 @@
+import moment from 'moment';
 import {calculateWeeks, summarizeByWeek, summarizeByMonth} from '../ResourcePlanUtils';
 
 test('weeks should be calculated', () => {
-  let startDate = new Date('December 7, 2016');
-  let numberOfWeeks = 3;
+  const startDate = new Date('December 7, 2016');
+  const numberOfWeeks = 3;
+  const expectedWeeks = [
+    {weekStarting: moment('2016-12-04'), weekEnding: moment('2016-12-10')},
+    {weekStarting: moment('2016-12-11'), weekEnding: moment('2016-12-17')},
+    {weekStarting: moment('2016-12-18'), weekEnding: moment('2016-12-24')}
+  ]
 
-  expect(calculateWeeks(startDate, numberOfWeeks)).toEqual([
-    {weekStarting: '04-Dec-2016', weekEnding: '10-Dec-2016'},
-    {weekStarting: '11-Dec-2016', weekEnding: '17-Dec-2016'},
-    {weekStarting: '18-Dec-2016', weekEnding: '24-Dec-2016'}
-  ]);
+  const weeks = calculateWeeks(startDate, numberOfWeeks);
+  weeks.forEach((week, idx) => {
+    expect(week.weekStarting.isSame(expectedWeeks[idx].weekStarting, 'day')).toBeTruthy();
+    expect(week.weekEnding.isSame(expectedWeeks[idx].weekEnding, 'day')).toBeTruthy();
+  });
 });
 
 test('resource plans should be summarized by week', () => {
   const weeks = [
-    {weekStarting: '11-DEC-2016', weekEnding: '17-DEC-2016'},
-    {weekStarting: '18-DEC-2016', weekEnding: '24-DEC-2016'},
-    {weekStarting: '25-DEC-2016', weekEnding: '30-DEC-2016'},
-    {weekStarting: '1-JAN-2017', weekEnding: '7-JAN-2017'}
+    {weekStarting: moment('2016-12-04'), weekEnding: moment('2016-12-10')},
+    {weekStarting: moment('2016-12-11'), weekEnding: moment('2016-12-17')},
+    {weekStarting: moment('2016-12-18'), weekEnding: moment('2016-12-24')},
+    {weekStarting: moment('2016-12-25'), weekEnding: moment('2016-12-30')}
   ];
   const resourcePlans = [
     {name: 'Dev Lead', allocations: [20, 20, 20, 20]},
@@ -36,10 +42,10 @@ test('resource plans should be summarized by week', () => {
 
 test('resource plans should be summarized by month', () => {
   const weeks = [
-    {weekStarting: '11-DEC-2016', weekEnding: '17-DEC-2016'},
-    {weekStarting: '18-DEC-2016', weekEnding: '24-DEC-2016'},
-    {weekStarting: '25-DEC-2016', weekEnding: '30-DEC-2016'},
-    {weekStarting: '1-JAN-2017', weekEnding: '7-JAN-2017'}
+    {weekStarting: moment('2016-12-11'), weekEnding: moment('2016-12-17')},
+    {weekStarting: moment('2016-12-18'), weekEnding: moment('2016-12-24')},
+    {weekStarting: moment('2016-12-25'), weekEnding: moment('2016-12-30')},
+    {weekStarting: moment('2017-01-01'), weekEnding: moment('2017-01-07')}
   ];
   const resourcePlans = [
     {name: 'Dev Lead', allocations: [20, 20, 20, 20]},

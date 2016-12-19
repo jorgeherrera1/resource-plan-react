@@ -30,7 +30,7 @@ class ResourcePlanTable extends React.Component {
       weekColumns.push(
         <Column
           key={weekId}
-          header={<Cell>{headers[weekId].weekStarting}</Cell>}
+          header={<Cell>{headers[weekId].weekStarting.format('DD-MMM-YYYY')}</Cell>}
           width={105}
           align="center"
           cell={({rowIndex}) => (

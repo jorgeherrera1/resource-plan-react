@@ -1,12 +1,13 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import WeeklyHeader from '../WeeklyHeader';
+import moment from 'moment';
 
 it('should render header', () => {
   const weeks = [
-    {weekStarting: '04-Dec-2016', weekEnding: '10-Dec-2016'},
-    {weekStarting: '11-Dec-2016', weekEnding: '17-Dec-2016'},
-    {weekStarting: '18-Dec-2016', weekEnding: '24-Dec-2016'}
+    {weekStarting: moment('2016-12-04'), weekEnding: moment('2016-12-10')},
+    {weekStarting: moment('2016-12-11'), weekEnding: moment('2016-12-17')},
+    {weekStarting: moment('2016-12-18'), weekEnding: moment('2016-12-24')}
   ];
 
   const weeklyHeader = shallow(

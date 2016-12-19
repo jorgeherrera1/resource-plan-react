@@ -8,9 +8,9 @@ class WeeklyHeader extends React.Component {
 
       return (
         <th key={idx} className="rp-week-col center-align">
-          {weekStarting}
+          {weekStarting.format('DD-MMM-YYYY')}
           <br/>
-          {weekEnding}
+          {weekEnding.format('DD-MMM-YYYY')}
         </th>
       );
     });
