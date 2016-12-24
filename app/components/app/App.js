@@ -4,7 +4,6 @@ import Nav from './Nav';
 import {Match, Redirect} from 'react-router';
 import ResourcePlans from '../resource-plans-table/ResourcePlans';
 import AllocationByMonth from '../charts/AllocationByMonth';
-import ResourcePlanTable from '../resource-plan-table-v2/ResourcePlanTable';
 
 class App extends React.Component {
 
@@ -52,11 +51,6 @@ class App extends React.Component {
           <Match pattern="/monthly" render={() => (
             <AllocationByMonth
               weeks={this.state.metadata.weeks}
-              resourcePlans={this.state.data.resourcePlans}/>
-            )} />
-          <Match pattern="/test" render={() => (
-            <ResourcePlanTable
-              startDate={this.state.data.startDate}
               resourcePlans={this.state.data.resourcePlans}/>
             )} />
         </div>

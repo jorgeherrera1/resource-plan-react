@@ -19,7 +19,6 @@ class Nav extends React.Component {
           <ul id="nav-mobile" className="left hide-on-med-and-down">
             <Link to="/worksheet">{(params) => <NavItem label="Worksheet" {...params}/>}</Link>
             <Link to="/monthly">{(params) => <NavItem label="Monthly" {...params}/>}</Link>
-            <Link to="/test">{(params) => <NavItem label="Test" {...params}/>}</Link>
           </ul>
         </div>
       </nav>
