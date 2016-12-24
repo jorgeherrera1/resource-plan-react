@@ -8,7 +8,7 @@ test('weeks should be calculated', () => {
     {weekStarting: moment('2016-12-04'), weekEnding: moment('2016-12-10')},
     {weekStarting: moment('2016-12-11'), weekEnding: moment('2016-12-17')},
     {weekStarting: moment('2016-12-18'), weekEnding: moment('2016-12-24')}
-  ]
+  ];
 
   const weeks = calculateWeeks(startDate, numberOfWeeks);
   weeks.forEach((week, idx) => {

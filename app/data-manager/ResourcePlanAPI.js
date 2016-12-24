@@ -1,9 +1,11 @@
 class ResourcePlanAPI {
 
   addWeek() {
-    return new Promise((resolve, reject) => {
+    return fetch('/api/add-week', {method: 'PUT'});
+  }
 
-    });
+  addResource() {
+    return fetch('/api/add-resource', {method: 'POST'});
   }
 
 }

@@ -14,6 +14,7 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var browserSync = require('browser-sync').create();
+var nodemon = require('gulp-nodemon');
 var del = require('del');
 
 gulp.task('images', function() {
@@ -96,8 +97,9 @@ gulp.task('serve', ['images', 'fonts', 'html', 'styles', 'js'], function() {
     notify: false,
     // Console log prefix
     logPrefix: 'RP',
-    server: 'public',
-    port: 3000,
+    //server: 'public',
+    proxy: 'http://localhost:3000',
+    port: 4000,
     browser: 'google chrome',
     reloadDelay: 500
   });
@@ -105,6 +107,15 @@ gulp.task('serve', ['images', 'fonts', 'html', 'styles', 'js'], function() {
   gulp.watch(['app/**/*.html'], ['html', browserSync.reload]);
   gulp.watch(['app/styles/**/*.scss'], ['styles', browserSync.reload]);
   gulp.watch(['app/**/*.js'], ['lint', 'js', browserSync.reload]);
+
+  return nodemon({
+    script: 'server.js',
+    watch: ['server.js']
+  }).on('start', function() {
+    setTimeout(function(){
+      browserSync.reload();
+    }, 500);
+  });
 });
 
 gulp.task('clean', function() {
