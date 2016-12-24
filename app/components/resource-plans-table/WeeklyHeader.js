@@ -21,6 +21,7 @@ class WeeklyHeader extends React.Component {
         <th className="rp-resource-name-col">Resource</th>
         {weeks}
         <th className="rp-resource-totals-col center-align">Total</th>
+        <th className="rp-resource-opts-col"></th>
       </tr>
     );
   }

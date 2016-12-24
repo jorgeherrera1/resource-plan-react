@@ -9,7 +9,6 @@ $success-color: color("green", "base");
 $error-color: color("red", "base");
 $link-color: color("light-blue", "darken-1");
 @import "../../node_modules/materialize-css/sass/materialize.scss";
-@import "fixed-data-table";
 
 .rp-app {
   width: 100%;
@@ -26,6 +25,10 @@ $link-color: color("light-blue", "darken-1");
 
 .rp-resource-plan-table {
   table-layout: fixed;
+}
+
+.rp-resource-opts-col {
+  width: 90px;
 }
 
 .rp-resource-id-col {

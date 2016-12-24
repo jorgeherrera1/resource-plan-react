@@ -9,6 +9,7 @@ class TotalsFooter extends React.Component {
       <tr>
         <td colSpan="2"></td>
         {weekTotals}
+        <td></td>
       </tr>
     );
   }
@@ -27,7 +28,7 @@ class TotalsFooter extends React.Component {
     weekTotals.push(grandTotal);
 
     return weekTotals.map((total, idx) => {
-      return <td key={idx} className="center-align">{total}</td>;
+      return <td key={idx} className="center-align"><strong>{total}</strong></td>;
     });
   }
 }

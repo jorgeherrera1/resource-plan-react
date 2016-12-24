@@ -46,7 +46,15 @@ class ResourcePlan extends React.Component {
             onChange={this.handleNameChanged}/>
         </td>
         {allocationElements}
-        <td className="center-align">{totalHours}</td>
+        <td className="center-align"><strong>{totalHours}</strong></td>
+        <td>
+          <button className="btn-floating waves-effect waves-light indigo darken-2 left-align">
+            <i className="material-icons">account_circle</i>
+          </button>&nbsp;
+          <button className="btn-floating waves-effect waves-light red left-align">
+            <i className="material-icons">remove</i>
+          </button>
+        </td>
       </tr>
     );
   }
