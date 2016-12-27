@@ -51,6 +51,11 @@ $link-color: color("light-blue", "darken-1");
 
     .rp-totals {
       width: 200px;
+
+      td {
+        font-size: 1.25em;
+        background-color: color("grey", "lighten-4");
+      }
     }
 
     .rp-table {

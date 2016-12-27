@@ -3,9 +3,7 @@ import {summarizeByResource} from '../../utils/ResourcePlanUtils';
 
 class Totals extends React.Component {
 
-  renderTotalHoursByResource() {
-    const totalHoursByResource = summarizeByResource(this.props.resourcePlans);
-
+  renderTotalHoursByResource(totalHoursByResource) {
     return totalHoursByResource.map((hours, resourcePlanId) => {
       return (
         <tr key={resourcePlanId}>
@@ -17,8 +15,24 @@ class Totals extends React.Component {
     });
   }
 
+  renderGrandTotal(totalHoursByResource) {
+    const grandTotal = totalHoursByResource.reduce((prevHours, currentHours) => {
+      return prevHours + currentHours;
+    });
+
+    return (
+      <tr>
+        <td className="center-align">
+          <strong>{grandTotal}</strong>
+        </td>
+      </tr>
+    );
+  }
+
   render() {
-    const totalHoursByResource = this.renderTotalHoursByResource();
+    const totalHoursByResource = summarizeByResource(this.props.resourcePlans);
+    const totalHoursByResourceElements = this.renderTotalHoursByResource(totalHoursByResource);
+    const grandTotalElement = this.renderGrandTotal(totalHoursByResource);
 
     return (
       <div className="rp-totals">
@@ -29,12 +43,10 @@ class Totals extends React.Component {
             </tr>
           </thead>
           <tfoot>
-            <tr>
-              <td className="center-align"><strong>9999</strong></td>
-            </tr>
+            {grandTotalElement}
           </tfoot>
           <tbody>
-            {totalHoursByResource}
+            {totalHoursByResourceElements}
           </tbody>
         </table>
       </div>
