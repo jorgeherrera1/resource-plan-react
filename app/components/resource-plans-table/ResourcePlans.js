@@ -1,16 +1,10 @@
 import React from 'react';
-import WeeklyHeader from './WeeklyHeader';
-import TotalsFooter from './TotalsFooter';
-import ResourcePlan from './ResourcePlan';
+import ResourcesInformation from './ResourcesInformation';
+import WeeklyAllocations from './WeeklyAllocations';
+import Totals from './Totals';
 import ResourcePlanActions from '../../actions/ResourcePlanActions';
 
 class ResourcePlans extends React.Component {
-
-  constructor(props) {
-    super(props);
-
-    this.handleAddWeek = this.handleAddWeek.bind(this);
-  }
 
   handleAddWeek(e) {
     ResourcePlanActions.addWeek();
@@ -21,39 +15,26 @@ class ResourcePlans extends React.Component {
   }
 
   render() {
-    const resourcePlanElements = this.props.resourcePlans.map(function(rp, idx) {
-      return (
-        <ResourcePlan
-          id={idx}
-          name={rp.name}
-          allocations={rp.allocations}
-          key={idx} />
-      );
-    });
-
     return (
-      <div className="rp-resource-plans">
-        <button
-          onClick={this.handleAddWeek} className="waves-effect waves-light btn">
-          Add Week
-        </button>
-        &nbsp;&nbsp;&nbsp;
-        <button
-          onClick={this.handleAddResource} className="waves-effect waves-light btn">
-          Add Resource
-        </button>
-        <table className="highlight rp-resource-plan-table">
-          <thead>
-            <WeeklyHeader
-              weeks={this.props.weeks} />
-          </thead>
-          <tfoot>
-            <TotalsFooter numberOfWeeks={this.props.weeks.length} data={this.props.resourcePlans} />
-          </tfoot>
-          <tbody>
-            {resourcePlanElements}
-          </tbody>
-        </table>
+      <div className="rp-container">
+        <div className="rp-toolbar">
+          <button className="waves-effect waves-light btn"
+            onClick={this.handleAddWeek}>
+            <i className="material-icons left">view_week</i>
+            Add Week
+          </button>
+          <button
+            className="waves-effect waves-light btn"
+            onClick={this.handleAddResource}>
+            <i className="material-icons left">playlist_add</i>
+            Add Resource
+          </button>
+        </div>
+        <div className="rp-table-container">
+          <ResourcesInformation resourcePlans={this.props.resourcePlans} />
+          <WeeklyAllocations weeks={this.props.weeks} resourcePlans={this.props.resourcePlans} />
+          <Totals resourcePlans={this.props.resourcePlans} />
+        </div>
       </div>
     );
   }

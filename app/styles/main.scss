@@ -14,21 +14,61 @@ $link-color: color("light-blue", "darken-1");
   width: 100%;
 }
 
+.container {
+  width: 85%;
+}
+
 .rp-logo {
   width: 85%;
   height: auto;
 }
 
-.rp-resource-plans {
-  overflow-x: scroll;
-}
+.rp-container {
+  display: flex;
+  flex-direction: column;
 
-.rp-resource-plan-table {
-  table-layout: fixed;
-}
+  .rp-toolbar {
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 10px;
 
-.rp-resource-opts-col {
-  width: 100px;
+    button {
+      margin-right: 10px;
+    }
+  }
+
+  .rp-table-container {
+    display: flex;
+    width: 100%;
+
+    .rp-resources-information {
+      width: 260px;
+    }
+
+    .rp-weekly-allocations {
+      overflow-x: scroll;
+    }
+
+    .rp-totals {
+      width: 200px;
+    }
+
+    .rp-table {
+      table-layout: fixed;
+
+      th {
+        height: 74px;
+      }
+
+      td {
+        height: 77px;
+      }
+
+      input {
+        margin: 0 !important;
+      }
+    }
+  }
 }
 
 .rp-resource-id-col {
@@ -39,10 +79,6 @@ $link-color: color("light-blue", "darken-1");
   width: 220px;
 }
 
-.rp-resource-totals-col {
-  width: 100px;
-}
-
-.rp-week-col {
+.rp-week-col, .rp-resource-total-col, .rp-resource-opts-col {
   width: 100px;
 }

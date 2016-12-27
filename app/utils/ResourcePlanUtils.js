@@ -47,3 +47,16 @@ export function summarizeByMonth(weeks, resourcePlans) {
 
   return monthlyTotals.toArray();
 }
+
+export function summarizeByResource(resourcePlans) {
+  let resourceTotals = [];
+  resourcePlans.forEach((resourcePlan) => {
+    const {allocations} = resourcePlan;
+    const totalHours = allocations.reduce((hoursLastWeek, hoursThisWeek) => {
+      return hoursLastWeek + hoursThisWeek;
+    });
+    resourceTotals.push(totalHours);
+  });
+
+  return resourceTotals;
+}
