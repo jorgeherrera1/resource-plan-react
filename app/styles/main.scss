@@ -47,10 +47,15 @@ $link-color: color("light-blue", "darken-1");
 
     .rp-weekly-allocations {
       overflow-x: scroll;
+
+      tfoot td {
+        font-size: 1.25em;
+        background-color: color("grey", "lighten-4");
+      }
     }
 
     .rp-totals {
-      width: 200px;
+      width: 100px;
 
       td {
         font-size: 1.25em;

@@ -1,5 +1,6 @@
 import React from 'react';
 import ResourcePlanActions from '../../actions/ResourcePlanActions';
+import {summarizeByWeek} from '../../utils/ResourcePlanUtils';
 
 class WeeklyAllocations extends React.Component {
 
@@ -54,9 +55,22 @@ class WeeklyAllocations extends React.Component {
     return resourceAllocations;
   }
 
+  renderWeeklyTotals() {
+    const weeklyTotals = summarizeByWeek(this.props.weeks, this.props.resourcePlans);
+
+    return weeklyTotals.map((totalHours, weekId) => {
+      return (
+        <td key={weekId} className="center-align">
+          <strong>{totalHours}</strong>
+        </td>
+      );
+    });
+  }
+
   render() {
     const weeks = this.renderWeeks();
     const resourceAllocations = this.renderResourceAllocations();
+    const weeklyTotals = this.renderWeeklyTotals();
 
     return (
       <div className="rp-weekly-allocations">
@@ -66,6 +80,11 @@ class WeeklyAllocations extends React.Component {
               {weeks}
             </tr>
           </thead>
+          <tfoot>
+            <tr>
+              {weeklyTotals}
+            </tr>
+          </tfoot>
           <tbody>
             {resourceAllocations}
           </tbody>
