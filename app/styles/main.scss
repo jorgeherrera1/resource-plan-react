@@ -61,6 +61,10 @@ $link-color: color("light-blue", "darken-1");
         font-size: 1.25em;
         background-color: color("grey", "lighten-4");
       }
+
+      tfoot td {
+        font-size: 1.75em;
+      }
     }
 
     .rp-table {
@@ -82,7 +86,7 @@ $link-color: color("light-blue", "darken-1");
 }
 
 .rp-resource-id-col {
-  width: 40px;
+  width: 80px;
 }
 
 .rp-resource-name-col {

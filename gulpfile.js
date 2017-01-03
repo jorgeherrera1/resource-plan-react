@@ -82,6 +82,7 @@ gulp.task('lint', function() {
 gulp.task('js', function() {
   return browserify('app/main.js')
     .transform('babelify')
+    .transform('browserify-shim')
     .bundle()
     .pipe(source('bundle.js'))
     .pipe(buffer())

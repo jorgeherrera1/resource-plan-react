@@ -27,6 +27,13 @@ const ResourcePlanActions = {
     AppDispatcher.dispatch({
       actionType: ResourcePlanConstants.ADD_RESOURCE
     });
+  },
+
+  removeResource: function(resourcePlanId) {
+    AppDispatcher.dispatch({
+      actionType: ResourcePlanConstants.REMOVE_RESOURCE,
+      payload: {resourcePlanId}
+    });
   }
 
 };

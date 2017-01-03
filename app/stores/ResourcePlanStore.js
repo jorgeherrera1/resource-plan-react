@@ -35,6 +35,10 @@ function addResource() {
   });
 }
 
+function removeResource(resourcePlanId) {
+  data.resourcePlans.splice(resourcePlanId, 1);
+}
+
 class ResourcePlanStore extends Store {
 
   getData() {
@@ -73,6 +77,11 @@ class ResourcePlanStore extends Store {
 
       case ResourcePlanConstants.ADD_RESOURCE:
         addResource();
+        this.__emitChange();
+        break;
+
+      case ResourcePlanConstants.REMOVE_RESOURCE:
+        removeResource(payload.resourcePlanId);
         this.__emitChange();
         break;
 
