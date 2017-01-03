@@ -20,7 +20,9 @@
     "materialize": "./node_modules/materialize-css/bin/materialize.js"
   },
   "browserify": {
-    "transform": ["browserify-shim"]
+    "transform": [
+      "browserify-shim"
+    ]
   },
   "browserify-shim": {
     "jquery": "$",
@@ -52,11 +54,13 @@
     "gulp-sass": "^3.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.8",
     "install": "^0.8.1",
     "jest-cli": "^18.0.0",
     "react-addons-test-utils": "^15.4.1",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.8.0"
   },
   "dependencies": {
     "chart.js": "^2.4.0",

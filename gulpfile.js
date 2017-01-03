@@ -10,9 +10,11 @@ var sass = require('gulp-sass');
 var cssnano = require('gulp-cssnano');
 var imagemin = require('gulp-imagemin');
 var autoprefixer = require('gulp-autoprefixer');
+var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
+var watchify = require('watchify');
 var browserSync = require('browser-sync').create();
 var nodemon = require('gulp-nodemon');
 var del = require('del');
@@ -80,16 +82,27 @@ gulp.task('lint', function() {
 });
 
 gulp.task('js', function() {
-  return browserify('app/main.js')
-    .transform('babelify')
-    .transform('browserify-shim')
-    .bundle()
-    .pipe(source('bundle.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init({loadMaps: true}))
-    .pipe(uglify())
-    .pipe(sourcemaps.write('./'))
-    .pipe(gulp.dest('public/js'));
+  var b = browserify({
+    entries: ['app/main.js'],
+    cache: {},
+    packageCache: {},
+    plugin: [watchify]
+  });
+  b.transform('babelify')
+  //b.transform('browserify-shim')
+  b.on('update', bundle);
+  b.on('log', gutil.log);
+  return bundle();
+
+  function bundle() {
+    return b.bundle()
+      .pipe(source('bundle.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init({loadMaps: true}))
+      .pipe(uglify())
+      .pipe(sourcemaps.write('./'))
+      .pipe(gulp.dest('public/js'));
+  }
 });
 
 gulp.task('serve', ['images', 'fonts', 'html', 'styles', 'js'], function() {
@@ -102,12 +115,12 @@ gulp.task('serve', ['images', 'fonts', 'html', 'styles', 'js'], function() {
     proxy: 'http://localhost:3000',
     port: 4000,
     browser: 'google chrome',
-    reloadDelay: 500
+    reloadDelay: 1000
   });
 
   gulp.watch(['app/**/*.html'], ['html', browserSync.reload]);
   gulp.watch(['app/styles/**/*.scss'], ['styles', browserSync.reload]);
-  gulp.watch(['app/**/*.js'], ['lint', 'js', browserSync.reload]);
+  gulp.watch(['app/**/*.js'], ['lint', browserSync.reload]);
 
   return nodemon({
     script: 'server.js',

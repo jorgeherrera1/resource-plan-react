@@ -68,20 +68,7 @@ class ResourcesInformation extends React.Component {
         <div id="modal1" className="modal bottom-sheet">
           <div className="modal-content">
             <h4>Resource Information</h4>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
-            <p>A bunch of text</p>
+            <p>A chart is supposed to go here</p>
           </div>
           <div className="modal-footer">
             <a href="#!" className="modal-action modal-close waves-effect waves-green btn-flat ">Remove</a>
