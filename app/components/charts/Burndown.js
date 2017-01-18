@@ -1,7 +1,7 @@
 import React from 'react';
 import Chart from 'chart.js';
 import Immutable from 'immutable';
-import {summarizeByMonth} from '../../utils/ResourcePlanUtils';
+import {summarizeByWeek} from '../../utils/ResourcePlanUtils';
 
 class Burndown extends React.Component {
 
@@ -13,26 +13,21 @@ class Burndown extends React.Component {
     this.chartInstance.destroy();
   }
 
-  getMonthLabels() {
-    let monthsLabels = [];
-    this.props.weeks.forEach((week, idx) => {
-      if (idx === 0) {
-        monthsLabels.push(week.weekStarting.format('MMMM'));
-      }
-
-      monthsLabels.push(week.weekEnding.format('MMMM'));
+  getLabels() {
+    const weekLabels = this.props.weeks.map((week, weekId) => {
+      return `Week ${weekId + 1}`;
     });
 
-    return Immutable.OrderedSet(monthsLabels).toArray();
+    return Immutable.OrderedSet(weekLabels).toArray();
   }
 
   getData() {
-    const hoursByMonth = summarizeByMonth(this.props.weeks, this.props.resourcePlans);
-    const totalHours = hoursByMonth.reduce((prevHours, currentHours) => {
+    const hoursByWeek = summarizeByWeek(this.props.weeks, this.props.resourcePlans);
+    const totalHours = hoursByWeek.reduce((prevHours, currentHours) => {
       return prevHours + currentHours;
     });
     let remainingHours = totalHours;
-    const burndownHours = hoursByMonth.map((hours) => {
+    const burndownHours = hoursByWeek.map((hours) => {
       remainingHours -= hours;
       return remainingHours;
     });
@@ -42,13 +37,13 @@ class Burndown extends React.Component {
   }
 
   renderChart() {
-    const monthLabels = this.getMonthLabels();
+    const labels = this.getLabels();
     const data = this.getData();
 
     this.chartInstance = new Chart(this.node, {
       type: 'line',
       data: {
-        labels: monthLabels,
+        labels: labels,
         datasets: [{
           label: 'Number of Hours',
           data: data,
