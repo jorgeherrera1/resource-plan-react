@@ -15,6 +15,11 @@ class ResourceInfoPanel extends React.Component {
     ResourcePlanActions.updateResourceName(resourcePlanId, resourceName);
   }
 
+  handleResourceRemoved(resourcePlanId) {
+    ResourcePlanActions.removeResource(resourcePlanId);
+    $(this.node).modal('close');
+  }
+
   componentDidMount() {
     $(this.node).modal({
       dismissible: true, // Modal can be dismissed by clicking outside of the modal
@@ -40,7 +45,10 @@ class ResourceInfoPanel extends React.Component {
               <p>{this.props.resourceName}</p>
             </div>
             <div className="modal-footer">
-              <button className="modal-action modal-close waves-effect waves-green btn-flat">
+              <button className="modal-action waves-effect waves-green btn-flat"
+                onClick={(e) => {
+                  this.handleResourceRemoved(resourcePlanId);
+                }}>
                 Remove
               </button>
             </div>
